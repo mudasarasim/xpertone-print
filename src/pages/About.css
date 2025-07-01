@@ -1,0 +1,14 @@
+.back{
+  height: 300px !important;
+  background-position: center !important;
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.back h2{
+  color: white;
+  font-size: 44px;
+  font-weight: bold;
+}
