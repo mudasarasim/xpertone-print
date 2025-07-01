@@ -2,6 +2,9 @@ import './About.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import React, { useState } from 'react';
+import CategorySidebar from '../components/CategorySidebar';
+import CartSidebar from '../components/CartSidebar';
+import WishlistSidebar from '../components/WishlistSidebar';
 
 
 
@@ -9,6 +12,9 @@ import React, { useState } from 'react';
 const About = () => {
   return (
     <>
+    <CategorySidebar />
+    <CartSidebar />
+    <WishlistSidebar />
       <div class="ms-breadcrumb m-b-30">
         <div class="container-fluid">
           <div class="row">

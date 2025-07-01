@@ -37,11 +37,9 @@ const Footer = () => (
                                 <div class="ms-footer-links ms-footer-dropdown">
                                     <ul class="align-items-center">
                                         <li class="ms-footer-link"><Link to={'/about'}>About us</Link></li>
-                                        <li class="ms-footer-link"><Link href="track-order.html">Delivery</Link></li>
-                                        <li class="ms-footer-link"><Link href="privacy-policy.html">Legal Notice</Link></li>
-                                        <li class="ms-footer-link"><Link href="terms-condition.html">Terms & conditions</Link></li>
-                                        <li class="ms-footer-link"><Link href="checkout.html">Secure payment</Link></li>
-                                        <li class="ms-footer-link"><Link href="contact-us.html">Contact us</Link></li>
+                                        <li class="ms-footer-link"><Link to={'/contact'}>Contact us</Link></li>
+                                        <li class="ms-footer-link"><Link to={'/login'}>Login</Link></li>
+                                        <li class="ms-footer-link"><Link to={'/signup'}>Sign Up</Link></li>
                                     </ul>
                                 </div>
                             </div>
@@ -68,7 +66,7 @@ United Arab Emirates</p>
                                             </li>
                                             <li class="ms-footer-link ms-foo-mail"><span><img
                                                         src="assets/img/icons/foo-mail.svg" class="svg_img foo_svg"
-                                                        alt=""/></span><a href="mailto:example@email.com">example@email.com</a></li>
+                                                        alt=""/></span><a href="mailto:example@email.com">info@xpertonecreative.com</a></li>
                                         </ul>
                                     </div>
                                 </div>

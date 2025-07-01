@@ -2,6 +2,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './Contact.css';
+import CategorySidebar from '../components/CategorySidebar';
+import CartSidebar from '../components/CartSidebar';
+import WishlistSidebar from '../components/WishlistSidebar';
 
 const ContactUs = () => {
   const [form, setForm] = useState({
@@ -29,6 +32,9 @@ const ContactUs = () => {
 
   return (
     <>
+    <CategorySidebar />
+    <CartSidebar />
+    <WishlistSidebar />
      <div class="ms-breadcrumb m-b-5">
         <div class="container-fluid">
           <div class="row">
@@ -54,23 +60,26 @@ const ContactUs = () => {
               <div className="contact-box p-4 shadow-sm">
                 <div className="icon mb-2"><i className="fa fa-envelope fa-2x"></i></div>
                 <h5>Mail & Website</h5>
-                <p><i className="fa fa-envelope"></i> mail.example@gmail.com</p>
-                <p><i className="fa fa-globe"></i> www.yourdomain.com</p>
-              </div>
+                <p><i className="fa fa-envelope"></i> info@xpertonecreative.com</p>
+                </div>
             </div>
             <div className="col-md-4">
               <div className="contact-box p-4 shadow-sm">
                 <div className="icon mb-2"><i className="fa fa-phone fa-2x"></i></div>
                 <h5>Contact</h5>
-                <p><i className="fa fa-mobile"></i> (+91)-9876XXXXX</p>
-                <p><i className="fa fa-mobile"></i> (+91)-987654XXXX</p>
+                <p><i className="fa fa-mobile"></i> +971 52 635 3298</p>
+            
               </div>
             </div>
             <div className="col-md-4">
               <div className="contact-box p-4 shadow-sm">
                 <div className="icon mb-2"><i className="fa fa-map-marker fa-2x"></i></div>
                 <h5>Address</h5>
-                <p>Ruami Mello Moraes Filho, 987<br />Salvador - MA, 40352, Brazil</p>
+                <p>Um Suqeim Street - Al Barsha
+
+Al Barsha 1 - Dubai
+
+United Arab Emirates</p>
               </div>
             </div>
           </div>

@@ -16,10 +16,10 @@ const Navbar = () => {
                                 <div class="header-top-social">
                                     <ul class="mb-0">
                                         <li class="list-inline-item">
-                                            <a href="javascript:void(0)"><i class="msicon msi-phone"></i></a>+91 987 654 3210
+                                            <a href="javascript:void(0)"><i class="msicon msi-phone"></i></a>+971 52 635 3298
                                         </li>
                                         <li class="list-inline-item">
-                                            <a href="javascript:void(0)"><i class="msicon msi-whatsapp"></i></a>+91 987 654 3210
+                                            <a href="javascript:void(0)"><i class="msicon msi-whatsapp"></i></a>+971 52 635 3298
                                         </li>
                                     </ul>
                                 </div>

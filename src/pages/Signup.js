@@ -1,10 +1,16 @@
 import React from 'react';
 import './Login.css'; // You can define your styles here
 import { Link } from 'react-router-dom';
+import CategorySidebar from '../components/CategorySidebar';
+import CartSidebar from '../components/CartSidebar';
+import WishlistSidebar from '../components/WishlistSidebar';
 
 const Signup = () => {
   return (
     <>
+    <CategorySidebar />
+    <CartSidebar />
+    <WishlistSidebar />
       {/* Top Banner */}
       <div className="ms-breadcrumb m-b-30">
         <div className="container-fluid">

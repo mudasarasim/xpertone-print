@@ -1,0 +1,17 @@
+.filter-sidebar h5 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.filter-sidebar input {
+  margin-right: 6px;
+}
+.filter-sidebar ul {
+  margin-bottom: 0;
+}
+.card-img-top {
+  height: 180px;
+  object-fit: contain;
+}
+.stars {
+  font-size: 14px;
+}
