@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import ScrollToTop from "./components/ScrollToTop";
 import Signup from "./pages/Signup";
 import CategoryWise from "./pages/CategoryPage";
+import ProductDetail from "./pages/ProductDetailPage";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -38,6 +39,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/categorywise" element={<CategoryWise />} />
+          <Route path="/productdetail" element={<ProductDetail />} />
         </Routes>
       <Footer/>
     </Router>

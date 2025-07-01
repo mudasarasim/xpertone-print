@@ -1,6 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// Define an array of categories
+const categories = [
+  { name: 'Business Cards', slug: 'business-cards' },
+  { name: 'Premium Business Cards', slug: 'premium-business-cards' },
+  { name: 'Official and Commercial Papers', slug: 'official-papers' },
+  { name: 'Brochures', slug: 'brochures' },
+  { name: 'Flyers', slug: 'flyers' },
+  { name: 'Envelopes', slug: 'envelopes' },
+  { name: 'Table Mat', slug: 'table-mat' },
+  { name: 'Shopping Bags', slug: 'shopping-bags' },
+  { name: 'Fast Food Boxes', slug: 'fast-food-boxes' },
+  { name: 'Die Cutting Products', slug: 'die-cutting-products' },
+  { name: 'Sticker', slug: 'sticker' },
+  { name: 'Menu', slug: 'menu' },
+  { name: 'Luxury Products', slug: 'luxury-products' },
+  { name: 'Car Mat', slug: 'car-mat' }
+];
+
 const CategorySidebar = () => (
   <>
     <div className="ms-side-cat-overlay"></div>
@@ -17,50 +35,13 @@ const CategorySidebar = () => (
               </div>
               <div className="ms-sb-block-content">
                 <ul>
-                  <li className="ms-list">
-                    <Link to="/category/business-cards" className="ms-sidebar-block-item">Business Cards</Link>
-                  </li>
-                  <li className="ms-list">
-                    <Link to="/category/premium-business-cards" className="ms-sidebar-block-item">Premium Business Cards</Link>
-                  </li>
-                  <li className="ms-list">
-                    <Link to="/category/official-papers" className="ms-sidebar-block-item">Official and Commercial Papers</Link>
-                  </li>
-                  <li className="ms-list">
-                    <Link to="/category/brochures" className="ms-sidebar-block-item">Brochures</Link>
-                  </li>
-                  <li className="ms-list">
-                    <Link to="/category/flyers" className="ms-sidebar-block-item">Flyers</Link>
-                  </li>
-                  <li className="ms-list">
-                    <Link to="/category/envelopes" className="ms-sidebar-block-item">Envelopes</Link>
-                  </li>
-                  <li className="ms-list">
-                    <Link to="/category/table-mat" className="ms-sidebar-block-item">Table Mat</Link>
-                  </li>
-                  <li className="ms-list">
-                    <Link to="/category/shopping-bags" className="ms-sidebar-block-item">
-                      Shopping Bags
-                    </Link>
-                  </li>
-                  <li className="ms-list">
-                    <Link to="/category/fast-food-boxes" className="ms-sidebar-block-item">Fast Food Boxes</Link>
-                  </li>
-                  <li className="ms-list">
-                    <Link to="/category/die-cutting-products" className="ms-sidebar-block-item">Die Cutting Products</Link>
-                  </li>
-                  <li className="ms-list">
-                    <Link to="/category/sticker" className="ms-sidebar-block-item">Sticker</Link>
-                  </li>
-                  <li className="ms-list">
-                    <Link to="/category/menu" className="ms-sidebar-block-item">Menu</Link>
-                  </li>
-                  <li className="ms-list">
-                    <Link to="/category/luxury-products" className="ms-sidebar-block-item">Luxury Products</Link>
-                  </li>
-                  <li className="ms-list">
-                    <Link to="/category/car-mat" className="ms-sidebar-block-item">Car Mat</Link>
-                  </li>
+                  {categories.map((category) => (
+                    <li key={category.slug} className="ms-list">
+                      <Link to={`/categorywise`} className="ms-sidebar-block-item">
+                        {category.name}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>

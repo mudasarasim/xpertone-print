@@ -75,15 +75,17 @@ const Home = () => {
                                 <div class="tab-pane fade show active" id="all">
                                     <div className="row align-items-stretch">
                                         {products.map((product) => (
-                                            <div className="col-md-3 col-sm-6 col-xs-6 ms-product-content" key={product.id}>
+                                              <div className="col-md-3 col-sm-6 col-xs-6 ms-product-content" key={product.id}>
+                                            <Link to={'/productdetail'} style={{textDecoration: 'none', color: 'black'}}>
+                                            
                                                 <div className="ms-product-inner">
                                                     <div className="ms-pro-image-outer">
                                                         <div className="ms-pro-image">
-                                                            <a href="product-left-sidebar.html" className="image">
+                                                            <div className="image">
                                                                
                                                                 <img className="main-image" src={product.mainImage} alt={product.title} />
                                                                 <img className="hover-image" src={product.hoverImage} alt={product.title} />
-                                                            </a>
+                                                            </div>
                                                             {product.badge && (
                                                                 <span className="flags">
                                                                     <span className={product.badge}>{product.badge.toUpperCase()}</span>
@@ -114,8 +116,10 @@ const Home = () => {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                                 </Link>
 
+                                            </div>
+                                           
                                         ))}
                                     </div>
 
@@ -161,15 +165,17 @@ const Home = () => {
                                 <div class="tab-pane fade show active" id="all">
                                     <div className="row">
                                         {products.map((product) => (
-                                           <div className="col-md-3 col-sm-6 col-xs-6 ms-product-content" key={product.id}>
+                                             <div className="col-md-3 col-sm-6 col-xs-6 ms-product-content" key={product.id}>
+                                            <Link to={'/productdetail'} style={{textDecoration: 'none', color: 'black'}}>
+                                            
                                                 <div className="ms-product-inner">
                                                     <div className="ms-pro-image-outer">
                                                         <div className="ms-pro-image">
-                                                            <a href="product-left-sidebar.html" className="image">
+                                                            <div className="image">
                                                                
                                                                 <img className="main-image" src={product.mainImage} alt={product.title} />
                                                                 <img className="hover-image" src={product.hoverImage} alt={product.title} />
-                                                            </a>
+                                                            </div>
                                                             {product.badge && (
                                                                 <span className="flags">
                                                                     <span className={product.badge}>{product.badge.toUpperCase()}</span>
@@ -200,6 +206,8 @@ const Home = () => {
                                                         </div>
                                                     </div>
                                                 </div>
+                                                 </Link>
+
                                             </div>
                                         ))}
                                     </div>
@@ -353,15 +361,17 @@ const Home = () => {
                                 <div class="tab-pane fade show active" id="all">
                                     <div className="row">
                                         {products.map((product) => (
-                                          <div className="col-md-3 col-sm-6 col-xs-6 ms-product-content" key={product.id}>
+                                         <div className="col-md-3 col-sm-6 col-xs-6 ms-product-content" key={product.id}>
+                                            <Link to={'/productdetail'} style={{textDecoration: 'none', color: 'black'}}>
+                                            
                                                 <div className="ms-product-inner">
                                                     <div className="ms-pro-image-outer">
                                                         <div className="ms-pro-image">
-                                                            <a href="product-left-sidebar.html" className="image">
-                                                                
+                                                            <div className="image">
+                                                               
                                                                 <img className="main-image" src={product.mainImage} alt={product.title} />
                                                                 <img className="hover-image" src={product.hoverImage} alt={product.title} />
-                                                            </a>
+                                                            </div>
                                                             {product.badge && (
                                                                 <span className="flags">
                                                                     <span className={product.badge}>{product.badge.toUpperCase()}</span>
@@ -392,6 +402,8 @@ const Home = () => {
                                                         </div>
                                                     </div>
                                                 </div>
+                                                 </Link>
+
                                             </div>
                                         ))}
                                     </div>
