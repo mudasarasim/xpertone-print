@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Profile.css'; // Naya CSS file
-import BASE_URL from '../config';
+import {BASE_URL} from '../config';
 
 const Profile = () => {
   const [user, setUser] = useState(null);

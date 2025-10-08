@@ -1,7 +1,7 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
-import BASE_URL from '../config';
+import {BASE_URL} from '../config';
 
 const Cart = () => {
   const { cartItems, removeFromCart, updateQuantity } = useCart();

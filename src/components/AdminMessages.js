@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import BASE_URL from "../config"; // ✅ centralized base URL
+import {BASE_URL} from "../config"; // ✅ centralized base URL
 
 const AdminMessages = () => {
   const [messages, setMessages] = useState([]);

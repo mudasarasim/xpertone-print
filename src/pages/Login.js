@@ -5,7 +5,7 @@ import axios from 'axios';
 import CategorySidebar from '../components/CategorySidebar';
 import CartSidebar from '../components/CartSidebar';
 import { useCart } from '../context/CartContext'; // 👈 import karo
-import BASE_URL from '../config';
+import {BASE_URL} from '../config';
 
 const Login = () => {
   const { setToken } = useCart(); 

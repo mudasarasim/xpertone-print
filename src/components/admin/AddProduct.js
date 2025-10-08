@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './AddProduct.css'; // animation aur styling ke liye (niche mention karunga CSS)
+import { BASE_URL } from '../../config';
 
 const AddProduct = () => {
   const [formData, setFormData] = useState({
@@ -19,7 +20,7 @@ const AddProduct = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get('http://localhost:5001/api/products');
+      const res = await axios.get(`${BASE_URL}/api/products`);
       setProducts(res.data);
     } catch (err) {
       console.error('Error fetching products:', err);
@@ -48,10 +49,10 @@ const AddProduct = () => {
 
     try {
       if (editingId) {
-        await axios.put(`http://localhost:5001/api/products/${editingId}`, data);
+        await axios.put(`${BASE_URL}/api/products/${editingId}`, data);
         setSuccess('✅ Product updated successfully!');
       } else {
-        const res = await axios.post('http://localhost:5001/api/products', data);
+        const res = await axios.post(`${BASE_URL}/api/products`, data);
         if (res.data.success) setSuccess('✅ Product added successfully!');
       }
       setFormData({
@@ -74,7 +75,7 @@ const AddProduct = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       try {
-        await axios.delete(`http://localhost:5001/api/products/${id}`);
+        await axios.delete(`${BASE_URL}/api/products/${id}`);
         fetchProducts();
       } catch (err) {
         console.error(err);
@@ -169,7 +170,7 @@ const AddProduct = () => {
           <div className="col-md-3 mb-4" key={product.id}>
             <div className="card product-card h-100">
               <img
-                src={`http://localhost:5001/uploads/${product.image}`}
+                src={`${BASE_URL}/uploads/${product.image}`}
                 className="card-img-top"
                 alt={product.title}
                 style={{ height: '200px', objectFit: 'cover' }}

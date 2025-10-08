@@ -1,7 +1,7 @@
 // pages/ContactUs.js
 import React, { useState } from 'react';
 import axios from 'axios';
-import BASE_URL from '../config';
+import {BASE_URL} from '../config';
 import './Contact.css';
 import CategorySidebar from '../components/CategorySidebar';
 import CartSidebar from '../components/CartSidebar';

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { BASE_URL } from '../../config';
 
 const ContactMessagesAdmin = () => {
   const [messages, setMessages] = useState([]);
@@ -7,7 +8,7 @@ const ContactMessagesAdmin = () => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const res = await axios.get('http://localhost:5001/api/contact/admin');
+        const res = await axios.get(`${BASE_URL}/api/contact/admin`);
         setMessages(res.data);
       } catch (err) {
         console.error('❌ Failed to fetch messages:', err);

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { BASE_URL } from '../config';
 
 const AddTour = () => {
   const [form, setForm] = useState({
@@ -26,7 +27,7 @@ const AddTour = () => {
     });
 
     try {
-      await axios.post('http://localhost:5001/api/admin/tours/add', data);
+      await axios.post(`${BASE_URL}/api/admin/tours/add`, data);
       alert('✅ Tour added!');
     } catch (err) {
       console.error(err);

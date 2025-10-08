@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import CategorySidebar from '../components/CategorySidebar';
 import CartSidebar from '../components/CartSidebar';
-import BASE_URL from '../config';
+import {BASE_URL} from '../config';
 
 
 const Signup = () => {

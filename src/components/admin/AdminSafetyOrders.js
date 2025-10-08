@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { BASE_URL } from "../../config";
 
 const AdminSafetyOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -8,7 +9,7 @@ const AdminSafetyOrders = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get("http://localhost:5001/api/safetyorder");
+        const res = await axios.get(`${BASE_URL}/api/safetyorder`);
         setOrders(res.data);
       } catch (err) {
         console.error("Error fetching safety orders:", err);

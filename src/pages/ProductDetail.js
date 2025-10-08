@@ -4,7 +4,7 @@ import axios from 'axios';
 import CategorySidebar from '../components/CategorySidebar';
 import CartSidebar from '../components/CartSidebar';
 import WishlistSidebar from '../components/WishlistSidebar';
-import BASE_URL from '../config';
+import {BASE_URL} from '../config';
 
 const ProductDetail = () => {
   const { id } = useParams();

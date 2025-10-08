@@ -3,13 +3,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './AdminOrders.css'; // custom CSS
+import { BASE_URL } from '../../config';
 
 const AdminOrders = () => {
   const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:5001/api/admin/orders')
+    axios.get(`${BASE_URL}/api/admin/orders`)
       .then(res => setOrders(res.data))
       .catch(err => console.error('Error fetching orders:', err));
   }, []);
@@ -56,7 +57,7 @@ const AdminOrders = () => {
                   <td>
                     {order.front_file ? (
                       <a 
-                        href={`http://localhost:5001/uploads/${order.front_file}`} 
+                        href={`${BASE_URL}/uploads/${order.front_file}`} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="btn btn-sm btn-outline-primary"
@@ -68,7 +69,7 @@ const AdminOrders = () => {
                   <td>
                     {order.back_file ? (
                       <a 
-                        href={`http://localhost:5001/uploads/${order.back_file}`} 
+                        href={`${BASE_URL}/uploads/${order.back_file}`} 
                         target="_blank" 
                         rel="noopener noreferrer"
                         className="btn btn-sm btn-outline-primary"

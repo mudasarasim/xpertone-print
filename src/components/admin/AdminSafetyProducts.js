@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { BASE_URL } from '../../config';
 
 const safetyCategories = ['Safety Jackets', 'Safety Vest', 'Safety Helmet'];
 
@@ -21,7 +22,7 @@ const AdminSafetyProducts = () => {
   // Fetch safety products
   const fetchProducts = async () => {
     try {
-      const res = await axios.get('http://localhost:5001/api/safety-products');
+      const res = await axios.get(`${BASE_URL}/api/safety-products`);
       setProducts(res.data);
     } catch (err) {
       console.error('Error fetching safety products:', err);
@@ -73,10 +74,10 @@ const AdminSafetyProducts = () => {
 
     try {
       if (editingId) {
-        await axios.put(`http://localhost:5001/api/safety-products/${editingId}`, data);
+        await axios.put(`${BASE_URL}/api/safety-products/${editingId}`, data);
         setSuccess('✅ Safety product updated successfully!');
       } else {
-        await axios.post('http://localhost:5001/api/safety-products', data);
+        await axios.post(`${BASE_URL}/api/safety-products`, data);
         setSuccess('✅ Safety product added successfully!');
       }
 
@@ -92,7 +93,7 @@ const AdminSafetyProducts = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       try {
-        await axios.delete(`http://localhost:5001/api/safety-products/${id}`);
+        await axios.delete(`${BASE_URL}/api/safety-products/${id}`);
         fetchProducts();
       } catch (err) {
         console.error('Error deleting safety product:', err);
@@ -206,7 +207,7 @@ const AdminSafetyProducts = () => {
         {filteredProducts.map((p) => (
           <div className="col-md-3 mb-4" key={p.id}>
             <div className="card h-100">
-              <img src={`http://localhost:5001/uploads/${p.image}`} className="card-img-top" alt={p.title} style={{ height: '200px', objectFit: 'cover' }} />
+              <img src={`${BASE_URL}/uploads/${p.image}`} className="card-img-top" alt={p.title} style={{ height: '200px', objectFit: 'cover' }} />
               <div className="card-body">
                 <h5 className="card-title">{p.title}</h5>
                 <p className="card-text">
