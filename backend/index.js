@@ -38,9 +38,10 @@ const frontendPath = path.join(__dirname, '..', 'build');
 app.use(express.static(frontendPath));
 
 // ✅ Catch-all route (for React Router or SPA)
-app.get('*', (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(frontendPath, 'index.html'));
 });
+
 
 // ✅ Start server on single port
 const PORT = process.env.PORT || 5000;
