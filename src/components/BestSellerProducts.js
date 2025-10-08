@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "../config"; // ✅ use config file instead of axios
+import axios from "../api/axiosConfig"; // ✅ centralized config
 import { Link } from "react-router-dom";
 
 const BestSellerProducts = () => {
@@ -34,9 +34,6 @@ const BestSellerProducts = () => {
     return <p className="text-center text-muted py-4">No products found.</p>;
   }
 
-  // ✅ Use same base URL for images
-  const BASE_URL = "http://175.41.162.115:5000";
-
   return (
     <div className="row margin-minus-b-15">
       <div className="col">
@@ -58,7 +55,7 @@ const BestSellerProducts = () => {
                           <div className="image">
                             <img
                               className="main-image"
-                              src={`${BASE_URL}/uploads/${product.image}`}
+                              src={`/uploads/${product.image}`} // ✅ no base URL here
                               alt={product.title}
                             />
                           </div>
