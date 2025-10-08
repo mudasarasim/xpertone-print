@@ -1,4 +1,9 @@
-// src/config.js
-const BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://175.41.162.115:5000";
+import axios from "axios";
 
-export default BASE_URL;
+const BASE_URL = "http://175.41.162.115:5000";
+
+const axiosInstance = axios.create({
+  baseURL: BASE_URL,
+});
+
+export default axiosInstance;
