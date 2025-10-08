@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import BASE_URL from "../config"; // ✅ centralized base URL
+import {BASE_URL} from "../config"; // ✅ centralized base URL
 
 const BestSellerProducts = () => {
   const [products, setProducts] = useState([]);
