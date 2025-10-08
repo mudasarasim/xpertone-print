@@ -16,11 +16,32 @@ const profileRoutes = require('./routes/profile');
 
 const app = express();
 
+// ✅ CORS Configuration
+const allowedOrigins = [
+  'http://localhost:3000',       // for local development
+  'http://175.41.162.115:5000',  // your deployed frontend
+  'http://175.41.162.115',       // just in case frontend runs without port
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin (e.g., mobile apps, curl)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 // ✅ Middleware
-app.use(cors());
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
-app.use('/uploads', express.static('uploads')); // for image access
+app.use('/uploads', express.static('uploads')); // serve images
 
 // ✅ API Routes
 app.use('/api/auth', authRoutes);
@@ -33,16 +54,15 @@ app.use('/api/safety-products', safetyProductsRouter);
 app.use('/api/safetyorder', safetyOrderRoutes);
 app.use('/api/profile', profileRoutes);
 
-// ✅ Serve frontend build (located outside backend folder)
+// ✅ Serve frontend build (React app)
 const frontendPath = path.join(__dirname, '..', 'build');
 app.use(express.static(frontendPath));
 
-// ✅ Catch-all route (for React Router or SPA)
-app.get(/.*/, (req, res) => {
+// ✅ Catch-all route (for React Router SPA)
+app.get('*', (req, res) => {
   res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
-
-// ✅ Start server on single port
+// ✅ Start Server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`✅ Server and frontend running on port ${PORT}`));
