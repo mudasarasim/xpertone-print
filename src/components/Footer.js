@@ -21,12 +21,12 @@ const Footer = () => (
                                 <h4 class="ms-footer-heading">Category</h4>
                                 <div class="ms-footer-links ms-footer-dropdown">
                                     <ul class="align-items-center">
-                                        <li class="ms-footer-link"><a href="shop-left-sidebar-col-3.html">Dairy & Milk</a></li>
-                                        <li class="ms-footer-link"><a href="shop-banner-left-sidebar-col-3.html">Snack & Spice</a></li>
-                                        <li class="ms-footer-link"><a href="shop-full-width-col-5.html">Fast Food</a></li>
-                                        <li class="ms-footer-link"><a href="shop-list-left-sidebar.html">Juice & Drinks</a></li>
-                                        <li class="ms-footer-link"><a href="shop-list-full-col-2.html">Bakery</a></li>
-                                        <li class="ms-footer-link"><a href="shop-banner-right-sidebar-col-4.html">Seafood</a></li>
+                                      <li className='ms-footer-link'><Link to="/category/business-cards">Business Cards</Link></li>
+                                                                                                 <li className='ms-footer-link'><Link to="/category/premium-business-cards">Premium Business Cards</Link></li>
+                                                                                                 <li className='ms-footer-link'><Link to="/category/official-papers">Official and Commercial Papers</Link></li>
+                                                                                                 <li className='ms-footer-link'><Link to="/category/brochures">Brochures</Link></li>
+                                                                                                 <li className='ms-footer-link'><Link to="/category/flyers">Flyers</Link></li>
+                                                                              
                                     </ul>
                                 </div>
                             </div>
