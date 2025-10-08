@@ -1,0 +1,28 @@
+.footer {
+  background:#2E4053;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+}
+
+.footer-link {
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.footer-link:hover {
+  text-decoration: underline;
+  color: #ccc;
+}
+
+.footer p,
+.footer li {
+  font-size: 0.95rem;
+}
+
+footer ul li a{
+  font-size: 22px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+}

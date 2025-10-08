@@ -1,0 +1,79 @@
+.filter-sidebar h5 {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 6px;
+}
+
+.filter-sidebar input[type='checkbox'] {
+  margin-right: 8px;
+  accent-color: #d32f2f;
+}
+
+.filter-sidebar ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.card-img-top {
+  height: 180px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.card-img-top:hover {
+  transform: scale(1.05);
+}
+
+.stars {
+  font-size: 14px;
+  color: #ffcc00;
+  letter-spacing: 1px;
+}
+/* Position icons inside image and show only on hover */
+.ms-pro-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.hover-actions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 10;
+}
+
+/* Show icons on hover */
+.ms-pro-image:hover .hover-actions {
+  opacity: 1;
+}
+
+/* Style for the round buttons */
+.hover-btn {
+  background-color: #fff;
+  border: none;
+  border-radius: 50%;
+  padding: 6px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 5px rgba(0,0,0,0.15);
+}
+
+/* Icon images inside buttons */
+.hover-btn img {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}

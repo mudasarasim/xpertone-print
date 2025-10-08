@@ -1,0 +1,129 @@
+.ms-product-content {
+  margin-bottom: 20px;
+}
+
+.ms-product-inner {
+  border: 1px solid #d3d3d3;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ms-pro-image-outer {
+  text-align: center;
+  position: relative;
+}
+/* Full width slider section */
+.ms-hero {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Ensure all inner wrappers are full width */
+.ms-main-content,
+.ms-slider-content,
+.ms-main-slider,
+.ms-slider,
+.swiper-container,
+.swiper-wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* Slide item style */
+.ms-slide-item {
+  width: 100% !important;
+  height: 90vh; /* full screen height adjust karna ho to 100vh kar sakte ho */
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Buttons & pagination adjust */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #000; /* arrow color */
+}
+
+.swiper-pagination-bullet {
+  background: #000;
+  opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+  background: #ff6600; /* active bullet color */
+}
+
+.ms-pro-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.lbl {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 14px;
+  z-index: 1;
+}
+
+.ms-product-title {
+  background: linear-gradient(to right, #00544f, #00b786);
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  flex-shrink: 0;
+  min-height: 80px; /* Ensures equal height for all title boxes */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.ms-circulations {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.ms-circulations h6 {
+  font-weight: bold;
+}
+
+.ms-circulation-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 1.5rem;
+}
+
+.ms-circulation-item span:first-child {
+  font-weight: bold;
+}
+
+.ms-circulation-item span:last-child {
+  font-weight: bold;
+  color: red;
+}
+
+Link{
+  text-decoration: none !important;
+}
