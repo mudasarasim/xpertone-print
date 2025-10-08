@@ -1,10 +1,10 @@
 const mysql = require('mysql2/promise');
 
 const db = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'printing_database',
+  host: 'ghattourgroup.com',
+  user: 'u705255933_xpertone_print',
+  password: 'Xpertone@122',
+  database: 'u705255933_xpertone_print',
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0
