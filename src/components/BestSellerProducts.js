@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../config"; // ✅ use config file instead of axios
 import { Link } from "react-router-dom";
 
 const BestSellerProducts = () => {
@@ -9,10 +9,9 @@ const BestSellerProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:5001/api/products");
+        const res = await axios.get("/api/products");
         if (Array.isArray(res.data)) {
-          // ✅ Only first 8 products as “Best Sellers”
-          setProducts(res.data.slice(0, 8));
+          setProducts(res.data.slice(0, 8)); // ✅ Only first 8 products
         }
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -32,10 +31,11 @@ const BestSellerProducts = () => {
   }
 
   if (products.length === 0) {
-    return (
-      <p className="text-center text-muted py-4">No products found.</p>
-    );
+    return <p className="text-center text-muted py-4">No products found.</p>;
   }
+
+  // ✅ Use same base URL for images
+  const BASE_URL = "http://175.41.162.115:5000";
 
   return (
     <div className="row margin-minus-b-15">
@@ -48,7 +48,6 @@ const BestSellerProducts = () => {
                   className="col-md-3 col-sm-6 col-xs-6 ms-product-content"
                   key={product.id}
                 >
-                  {/* ✅ Product detail page link */}
                   <Link
                     to={`/product/${product.id}`}
                     style={{ textDecoration: "none", color: "black" }}
@@ -59,12 +58,11 @@ const BestSellerProducts = () => {
                           <div className="image">
                             <img
                               className="main-image"
-                              src={`http://localhost:5001/uploads/${product.image}`}
+                              src={`${BASE_URL}/uploads/${product.image}`}
                               alt={product.title}
                             />
                           </div>
 
-                          {/* ✅ Product badge if available */}
                           {product.badge && (
                             <span className="flags">
                               <span className={product.badge}>
@@ -72,16 +70,11 @@ const BestSellerProducts = () => {
                               </span>
                             </span>
                           )}
-
-                     
-                         
                         </div>
                       </div>
 
-                      {/* ✅ Product title */}
                       <div className="ms-product-title">{product.title}</div>
 
-                      {/* ✅ Circulation (price options) */}
                       <div className="ms-circulations">
                         <h6>Available Circulations:</h6>
                         <div className="ms-circulation-item">

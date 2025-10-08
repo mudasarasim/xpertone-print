@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../config'; // ✅ Use the configured Axios instance
 
 const AdminMessages = () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5001/api/contact/all')
+    axios.get('/api/contact/all')
       .then((res) => setMessages(res.data))
-      .catch((err) => console.error(err));
+      .catch((err) => console.error('Error fetching messages:', err));
   }, []);
 
   return (
@@ -26,7 +26,7 @@ const AdminMessages = () => {
         </thead>
         <tbody>
           {messages.map((msg, idx) => (
-            <tr key={msg.id}>
+            <tr key={msg.id || idx}>
               <td>{idx + 1}</td>
               <td>{msg.name}</td>
               <td>{msg.email}</td>
