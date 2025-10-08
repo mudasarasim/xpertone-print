@@ -2,9 +2,6 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const db = require('../config/db');
 
-// Hardcoded secret
-const JWT_SECRET = 'khubaibisgreat';
-
 exports.register = async (req, res) => {
   const { username, email, password } = req.body;
 
@@ -20,7 +17,6 @@ exports.register = async (req, res) => {
     res.json({ message: 'User registered successfully' });
     
   } catch (err) {
-    console.log("Register error:", err);
     res.status(500).json({ message: 'Server error' });
   }
 };
@@ -41,8 +37,7 @@ exports.login = async (req, res) => {
 
     if (!match) return res.status(401).json({ message: 'Invalid email or password' });
 
-    // Use hardcoded secret
-    const token = jwt.sign({ id: user.id, email: user.email }, JWT_SECRET, {
+    const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, {
       expiresIn: '1d',
     });
     console.log("Token:", token);
