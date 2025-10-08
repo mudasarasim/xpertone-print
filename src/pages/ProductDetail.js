@@ -4,13 +4,14 @@ import axios from 'axios';
 import CategorySidebar from '../components/CategorySidebar';
 import CartSidebar from '../components/CartSidebar';
 import WishlistSidebar from '../components/WishlistSidebar';
+import BASE_URL from '../config';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:5001/api/products/${id}`)
+    axios.get(`${BASE_URL}/api/products/${id}`)
       .then((res) => setProduct(res.data))
       .catch((err) => console.error('Error loading product:', err));
   }, [id]);
@@ -48,7 +49,7 @@ const ProductDetail = () => {
             <div className="col-md-5">
               <div className="product-img">
                 <img
-                  src={`http://localhost:5001/uploads/${product.image}`}
+                  src={`${BASE_URL}/uploads/${product.image}`}
                   alt={product.title}
                   className="img-fluid rounded"
                 />

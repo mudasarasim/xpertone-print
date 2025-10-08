@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import CategorySidebar from '../components/CategorySidebar';
 import CartSidebar from '../components/CartSidebar';
+import BASE_URL from '../config';
 
 
 const Signup = () => {
@@ -23,7 +24,7 @@ const Signup = () => {
     e.preventDefault();
     setError('');
     try {
-      const res = await axios.post('http://localhost:5001/api/auth/register', form);
+      const res = await axios.post(`${BASE_URL}/api/auth/register`, form);
       localStorage.setItem('userToken', res.data.token);
       navigate('/login'); // ✅ Redirect after successful signup
     } catch (err) {

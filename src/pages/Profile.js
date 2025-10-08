@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Profile.css'; // Naya CSS file
+import BASE_URL from '../config';
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -11,7 +12,7 @@ const Profile = () => {
       if (!token) return;
 
       try {
-        const res = await axios.get('http://localhost:5001/api/profile', {
+        const res = await axios.get(`${BASE_URL}/api/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(res.data.user);

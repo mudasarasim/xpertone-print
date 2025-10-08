@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
+import BASE_URL from '../config';
 import CategorySidebar from '../components/CategorySidebar';
 import CartSidebar from '../components/CartSidebar';
 import { useCart } from '../context/CartContext';
@@ -43,11 +44,11 @@ const CategoryWise = () => {
         if (backendCategory && safetyCategories.includes(backendCategory)) {
           // 🦺 Safety product fetch
           res = await axios.get(
-            `http://localhost:5001/api/safety-products/category/${backendCategory}`
+            `${BASE_URL}/api/safety-products/category/${backendCategory}`
           );
         } else {
           // 🛍 Normal product fetch
-          res = await axios.get(`http://localhost:5001/api/products/category/${label}`);
+          res = await axios.get(`${BASE_URL}/api/products/category/${label}`);
         }
 
         setProducts(res.data);
@@ -141,7 +142,7 @@ const CategoryWise = () => {
             >
               <img
                 className="main-image w-100 h-100 object-fit-cover"
-                src={`http://localhost:5001/uploads/${product.image}`}
+                src={`${BASE_URL}/uploads/${product.image}`}
                 alt={product.title}
               />
             </Link>

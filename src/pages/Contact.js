@@ -1,6 +1,7 @@
 // pages/ContactUs.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import BASE_URL from '../config';
 import './Contact.css';
 import CategorySidebar from '../components/CategorySidebar';
 import CartSidebar from '../components/CartSidebar';
@@ -24,7 +25,7 @@ const ContactUs = () => {
     setFeedback({ type: '', text: '' });
 
     try {
-      await axios.post('http://localhost:5001/api/contact', form);
+      await axios.post(`${BASE_URL}/api/contact`, form);
       setFeedback({ type: 'success', text: '✅ Thank you for contacting us!' });
       setForm({ name: '', email: '', phone: '', message: '' });
     } catch (err) {

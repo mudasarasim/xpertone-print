@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
+import BASE_URL from '../config';
 
 const Cart = () => {
   const { cartItems, removeFromCart, updateQuantity } = useCart();
@@ -33,7 +34,7 @@ const Cart = () => {
                       src={
                         item.image?.startsWith('http')
                           ? item.image
-                          : `http://localhost:5001/uploads/${item.image}`
+                          : `${BASE_URL}/uploads/${item.image}`
                       }
                       className="card-img-top"
                       alt={item.title}

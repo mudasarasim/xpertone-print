@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "../config"; // ✅ centralized config
+import axios from "axios";
 import { Link } from "react-router-dom";
+import BASE_URL from "../config"; // ✅ centralized base URL
 
 const BestSellerProducts = () => {
   const [products, setProducts] = useState([]);
@@ -9,7 +10,7 @@ const BestSellerProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("/api/products");
+        const res = await axios.get(`${BASE_URL}/api/products`);
         if (Array.isArray(res.data)) {
           setProducts(res.data.slice(0, 8)); // ✅ Only first 8 products
         }
@@ -53,9 +54,10 @@ const BestSellerProducts = () => {
                       <div className="ms-pro-image-outer">
                         <div className="ms-pro-image">
                           <div className="image">
+                            {/* ✅ use BASE_URL for images too */}
                             <img
                               className="main-image"
-                              src={`/uploads/${product.image}`} // ✅ no base URL here
+                              src={`${BASE_URL}/uploads/${product.image}`}
                               alt={product.title}
                             />
                           </div>

@@ -4,6 +4,7 @@ import axios from 'axios';
 import CategorySidebar from '../components/CategorySidebar';
 import CartSidebar from '../components/CartSidebar';
 import { useNavigate } from 'react-router-dom';
+import BASE_URL from '../config';
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -15,7 +16,7 @@ const ProductDetail = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:5001/api/products/${id}`)
+    axios.get(`${BASE_URL}/api/products/${id}`)
       .then(res => {
         setProduct(res.data);
         const price = quantity === 1000 ? parseFloat(res.data.quantity_1000) : parseFloat(res.data.quantity_500);
@@ -81,7 +82,7 @@ const decreaseQuantity = () => {
             <div className="col-md-5">
               <div className="product-img">
                 <img
-                  src={`http://localhost:5001/uploads/${product.image}`}
+                  src={`${BASE_URL}/uploads/${product.image}`}
                   alt={product.title}
                   className="img-fluid rounded"
                 />

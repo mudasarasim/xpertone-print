@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './SafetyProductDetails.css';
+import BASE_URL from '../config';
 
 const safetyCategories = ['Safety Jackets', 'Safety Vest', 'Safety Helmet'];
 
@@ -26,7 +27,7 @@ const SafetyProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(`http://localhost:5001/api/safety-products/${id}`);
+        const res = await axios.get(`${BASE_URL}/api/safety-products/${id}`);
         setProduct(res.data);
 
         const productSizes = parseSizes(res.data.size);
@@ -84,7 +85,7 @@ const SafetyProductDetails = () => {
             }}
           >
             <img
-              src={`http://localhost:5001/uploads/${product.image}`}
+              src={`${BASE_URL}/uploads/${product.image}`}
               alt={product.title}
               style={{
                 width: '100%',

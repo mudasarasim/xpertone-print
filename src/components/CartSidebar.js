@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
+import axiosInstance from '../config'; // ✅ import shared axios config
 
 const CartSidebar = () => {
   const { cartItems, removeFromCart, updateQuantity, isCartOpen, closeCart } = useCart();
@@ -19,6 +20,9 @@ const CartSidebar = () => {
   };
 
   if (!isCartOpen) return null;
+
+  // ✅ Base URL from axios config
+  const BASE_URL = axiosInstance.defaults.baseURL;
 
   return (
     <>
@@ -48,7 +52,7 @@ const CartSidebar = () => {
                           src={
                             item.image?.startsWith('http')
                               ? item.image
-                              : `http://localhost:5001/uploads/${item.image}`
+                              : `${BASE_URL}/uploads/${item.image}` // ✅ dynamic base URL
                           }
                           alt={item.title || 'Product'}
                         />
@@ -102,7 +106,6 @@ const CartSidebar = () => {
 
             <div className="cart_btn">
               <Link to="/cart" className="ms-btn-1">View Cart</Link>
-              {/* Checkout button removed as requested */}
             </div>
           </div>
         </div>

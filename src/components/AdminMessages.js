@@ -1,13 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import axios from '../config'; // ✅ Use the configured Axios instance
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import BASE_URL from "../config"; // ✅ centralized base URL
 
 const AdminMessages = () => {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/contact/all')
-      .then((res) => setMessages(res.data))
-      .catch((err) => console.error('Error fetching messages:', err));
+    const fetchMessages = async () => {
+      try {
+        const res = await axios.get(`${BASE_URL}/api/contact/all`);
+        setMessages(res.data);
+      } catch (err) {
+        console.error("Error fetching messages:", err);
+      }
+    };
+    fetchMessages();
   }, []);
 
   return (

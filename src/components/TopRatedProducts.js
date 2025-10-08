@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import BASE_URL from "../config"; // ✅ centralized base URL
 
 const TopRatedProducts = () => {
   const [products, setProducts] = useState([]);
@@ -8,7 +9,7 @@ const TopRatedProducts = () => {
   useEffect(() => {
     const fetchTopRated = async () => {
       try {
-        const res = await axios.get("http://localhost:5001/api/products");
+        const res = await axios.get(`${BASE_URL}/api/products`);
         if (Array.isArray(res.data)) {
           const lastEight = res.data.slice(-8); // ✅ show only last 8
           setProducts(lastEight.reverse()); // reverse to show latest first
@@ -35,7 +36,6 @@ const TopRatedProducts = () => {
                   className="col-md-3 col-sm-6 col-xs-6 ms-product-content"
                   key={product.id}
                 >
-                  {/* ✅ Clicking card opens product detail page */}
                   <Link
                     to={`/product/${product.id}`}
                     style={{ textDecoration: "none", color: "black" }}
@@ -45,13 +45,13 @@ const TopRatedProducts = () => {
                         <div className="ms-pro-image">
                           <div className="image">
                             <img
-                              className="image"
-                              src={`http://localhost:5001/uploads/${product.image}`}
+                              className="main-image"
+                              src={`/uploads/${product.image}`} // ✅ consistent approach (no base URL for images)
                               alt={product.title}
                             />
                           </div>
 
-                          {/* ✅ Product badge if available */}
+                          {/* ✅ Optional badge */}
                           {product.badge && (
                             <span className="flags">
                               <span className={product.badge}>
@@ -59,14 +59,11 @@ const TopRatedProducts = () => {
                               </span>
                             </span>
                           )}
-            
                         </div>
                       </div>
 
-                      {/* ✅ Product title */}
                       <div className="ms-product-title">{product.title}</div>
 
-                      {/* ✅ Circulations (pricing) */}
                       <div className="ms-circulations">
                         <h6>Available Circulations:</h6>
                         <div className="ms-circulation-item">

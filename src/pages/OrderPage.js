@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import BASE_URL from '../config';
 
 const OrderPage = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const OrderPage = () => {
     }
 
     try {
-      await axios.post('http://localhost:5001/api/safetyorder', {
+      await axios.post(`${BASE_URL}/api/safetyorder`, {
         customer_name: formData.name,
         customer_email: formData.email,
         customer_phone: formData.phone,
@@ -108,7 +109,7 @@ const OrderPage = () => {
               <div className="row g-0 align-items-center">
                 <div className="col-4">
                   <img
-                    src={`http://localhost:5001/uploads/${item.image}`}
+                    src={`${BASE_URL}/uploads/${item.image}`}
                     className="img-fluid rounded-start"
                     alt={item.title}
                     style={{ height: '100%', objectFit: 'cover' }}

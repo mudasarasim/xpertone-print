@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import BASE_URL from '../config';
 
 const ConfirmOrder = () => {
   const { state } = useLocation();
@@ -35,7 +36,7 @@ const ConfirmOrder = () => {
   try {
     setLoading(true);
     console.log('📤 Sending order to server...');
-    const res = await axios.post('http://localhost:5001/api/orders', formData);
+    const res = await axios.post(`${BASE_URL}/api/orders`, formData);
 
     console.log('✅ Server response:', res.data);
     setSuccessMsg(res.data.message || 'Order placed successfully');

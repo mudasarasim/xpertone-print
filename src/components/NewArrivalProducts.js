@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import BASE_URL from "../config"; // ✅ Import base URL
 
 const NewArrivalProducts = () => {
   const [products, setProducts] = useState([]);
@@ -9,10 +10,9 @@ const NewArrivalProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get("http://localhost:5001/api/products");
+        const res = await axios.get(`${BASE_URL}/api/products`);
         if (Array.isArray(res.data)) {
-          // ✅ Take next 8 products as “new arrivals”
-          setProducts(res.data.slice(8, 16));
+          setProducts(res.data.slice(8, 16)); // ✅ New arrivals
         }
       } catch (error) {
         console.error("Error fetching new arrival products:", error);
@@ -20,6 +20,7 @@ const NewArrivalProducts = () => {
         setLoading(false);
       }
     };
+
     fetchProducts();
   }, []);
 
@@ -50,7 +51,6 @@ const NewArrivalProducts = () => {
                   className="col-md-3 col-sm-6 col-xs-6 ms-product-content"
                   key={product.id}
                 >
-                  {/* ✅ Product detail link added */}
                   <Link
                     to={`/product/${product.id}`}
                     style={{ textDecoration: "none", color: "black" }}
@@ -59,14 +59,14 @@ const NewArrivalProducts = () => {
                       <div className="ms-pro-image-outer">
                         <div className="ms-pro-image">
                           <div className="image">
+                            {/* ✅ Use shared BASE_URL for images */}
                             <img
                               className="main-image"
-                              src={`http://localhost:5001/uploads/${product.image}`}
+                              src={`${BASE_URL}/uploads/${product.image}`}
                               alt={product.title}
                             />
                           </div>
 
-                          {/* ✅ Optional badge if present */}
                           {product.badge && (
                             <span className="flags">
                               <span className={product.badge}>
@@ -74,14 +74,11 @@ const NewArrivalProducts = () => {
                               </span>
                             </span>
                           )}
-
                         </div>
                       </div>
 
-                      {/* ✅ Product title */}
                       <div className="ms-product-title">{product.title}</div>
 
-                      {/* ✅ Circulation (price options) */}
                       <div className="ms-circulations">
                         <h6>Available Circulations:</h6>
                         <div className="ms-circulation-item">

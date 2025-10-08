@@ -5,6 +5,7 @@ import axios from 'axios';
 import CategorySidebar from '../components/CategorySidebar';
 import CartSidebar from '../components/CartSidebar';
 import { useCart } from '../context/CartContext'; // 👈 import karo
+import BASE_URL from '../config';
 
 const Login = () => {
   const { setToken } = useCart(); 
@@ -20,7 +21,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   setError('');
   try {
-    const res = await axios.post('http://localhost:5001/api/auth/login', form);
+    const res = await axios.post(`${BASE_URL}/api/auth/login`, form);
     console.log('Login response:', res.data); // 👈 debug
     localStorage.setItem('userToken', res.data.token);
 
