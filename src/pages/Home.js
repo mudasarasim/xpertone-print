@@ -92,7 +92,7 @@ const Home = () => {
                                     <div class="ms-bnr-info">
                                         <h2 style={{ color: 'white' }}>Bussiness Cards <br />For Your Bussiness</h2>
                                         <h3 style={{ color: 'white' }}>30% off sale <span style={{ color: 'white' }}>Hurry up!!!</span></h3>
-                                        <a href="/category/business-cards" class="ms-btn-2">Shop now</a>
+                                        <Link to={'/category/business-cards'} class="ms-btn-2">Shop now</Link>
                                     </div>
                                 </div>
                             </div>

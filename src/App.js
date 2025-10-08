@@ -40,7 +40,7 @@ function AppWrapper() {
   }, []);
 
   // Paths jahan Navbar aur Footer hide karne hain
-  const hideNavbarFooterPaths = ["/login", "/admin"];
+  const hideNavbarFooterPaths = ["/admin"];
   const hideLayout = hideNavbarFooterPaths.some(path => location.pathname.startsWith(path));
 
   return (
