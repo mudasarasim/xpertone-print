@@ -10,7 +10,7 @@ const BestSellerProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get(`http://175.41.162.115:5000/api/products`);
+        const res = await axios.get(`${BASE_URL}/api/products`);
         if (Array.isArray(res.data)) {
           setProducts(res.data.slice(0, 8)); // ✅ Only first 8 products
         }
@@ -57,7 +57,7 @@ const BestSellerProducts = () => {
                             {/* ✅ use BASE_URL for images too */}
                             <img
                               className="main-image"
-                              src={`http://175.41.162.115:5000/uploads/${product.image}`}
+                              src={`${BASE_URL}/uploads/${product.image}`}
                               alt={product.title}
                             />
                           </div>
