@@ -10,7 +10,8 @@ const AdminOrders = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`${BASE_URL}/api/admin/orders`)
+    axios
+      .get(`${BASE_URL}/api/admin/orders`)
       .then(res => setOrders(res.data))
       .catch(err => console.error('Error fetching orders:', err));
   }, []);
@@ -35,6 +36,10 @@ const AdminOrders = () => {
             <thead className="table-dark">
               <tr>
                 <th>ID</th>
+                <th>Customer Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Location</th>
                 <th>Product Title</th>
                 <th>Quantity</th>
                 <th>Circulation</th>
@@ -49,6 +54,10 @@ const AdminOrders = () => {
               {orders.map(order => (
                 <tr key={order.id} className="order-row">
                   <td>{order.id}</td>
+                  <td>{order.customer_name}</td>
+                  <td>{order.customer_email}</td>
+                  <td>{order.customer_phone}</td>
+                  <td>{order.customer_location}</td>
                   <td>{order.product_title}</td>
                   <td>{order.quantity}</td>
                   <td>{order.circulation}</td>
@@ -56,27 +65,31 @@ const AdminOrders = () => {
                   <td>{order.total_price}</td>
                   <td>
                     {order.front_file ? (
-                      <a 
-                        href={`${BASE_URL}/uploads/${order.front_file}`} 
-                        target="_blank" 
+                      <a
+                        href={`${BASE_URL}/uploads/${order.front_file}`}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn-sm btn-outline-primary"
                       >
                         View
                       </a>
-                    ) : 'N/A'}
+                    ) : (
+                      'N/A'
+                    )}
                   </td>
                   <td>
                     {order.back_file ? (
-                      <a 
-                        href={`${BASE_URL}/uploads/${order.back_file}`} 
-                        target="_blank" 
+                      <a
+                        href={`${BASE_URL}/uploads/${order.back_file}`}
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn-sm btn-outline-primary"
                       >
                         View
                       </a>
-                    ) : 'N/A'}
+                    ) : (
+                      'N/A'
+                    )}
                   </td>
                   <td>{new Date(order.created_at).toLocaleString()}</td>
                 </tr>

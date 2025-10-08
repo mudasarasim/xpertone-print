@@ -24,6 +24,10 @@ router.post('/', upload.fields([{ name: 'frontFile' }, { name: 'backFile' }]), a
       circulation,
       series,
       total_price,
+      customer_name,
+      customer_email,
+      customer_phone,
+      customer_location,
     } = req.body;
 
     const frontFile = req.files?.frontFile?.[0]?.filename || '';
@@ -33,8 +37,9 @@ router.post('/', upload.fields([{ name: 'frontFile' }, { name: 'backFile' }]), a
 
     const sql = `
       INSERT INTO orders
-      (product_title, quantity, circulation, series, total_price, front_file, back_file)
-      VALUES (?, ?, ?, ?, ?, ?, ?)
+      (product_title, quantity, circulation, series, total_price, front_file, back_file,
+       customer_name, customer_email, customer_phone, customer_location)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     const [result] = await conn.execute(sql, [
@@ -45,6 +50,10 @@ router.post('/', upload.fields([{ name: 'frontFile' }, { name: 'backFile' }]), a
       total_price,
       frontFile,
       backFile,
+      customer_name,
+      customer_email,
+      customer_phone,
+      customer_location,
     ]);
 
     conn.release();

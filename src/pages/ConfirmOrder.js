@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import {BASE_URL} from '../config';
+import { BASE_URL } from '../config';
 
 const ConfirmOrder = () => {
   const { state } = useLocation();
@@ -9,7 +9,14 @@ const ConfirmOrder = () => {
   const [loading, setLoading] = useState(false);
   const [successMsg, setSuccessMsg] = useState('');
 
-  if (!state) return <div className="container py-5">No order data provided.</div>;
+  // Customer details states
+  const [customerName, setCustomerName] = useState('');
+  const [customerEmail, setCustomerEmail] = useState('');
+  const [customerPhone, setCustomerPhone] = useState('');
+  const [customerLocation, setCustomerLocation] = useState('');
+
+  if (!state)
+    return <div className="container py-5">No order data provided.</div>;
 
   const {
     product,
@@ -21,42 +28,48 @@ const ConfirmOrder = () => {
     backFile,
   } = state;
 
- const handleSubmit = async () => {
-  if (!frontFile || !backFile) return alert('Both files are required');
+  const handleSubmit = async () => {
+    if (!frontFile || !backFile) return alert('Both files are required');
+    if (!customerName || !customerEmail || !customerPhone || !customerLocation)
+      return alert('Please fill all customer details');
 
-  const formData = new FormData();
-  formData.append('product_title', product.title);
-  formData.append('quantity', quantity);
-  formData.append('circulation', circulation);
-  formData.append('series', series);
-  formData.append('total_price', totalPrice);
-  formData.append('frontFile', frontFile);
-  formData.append('backFile', backFile);
+    const formData = new FormData();
+    formData.append('product_title', product.title);
+    formData.append('quantity', quantity);
+    formData.append('circulation', circulation);
+    formData.append('series', series);
+    formData.append('total_price', totalPrice);
+    formData.append('frontFile', frontFile);
+    formData.append('backFile', backFile);
 
-  try {
-    setLoading(true);
-    console.log('📤 Sending order to server...');
-    const res = await axios.post(`${BASE_URL}/api/orders`, formData);
+    // ✅ Add customer details
+    formData.append('customer_name', customerName);
+    formData.append('customer_email', customerEmail);
+    formData.append('customer_phone', customerPhone);
+    formData.append('customer_location', customerLocation);
 
-    console.log('✅ Server response:', res.data);
-    setSuccessMsg(res.data.message || 'Order placed successfully');
+    try {
+      setLoading(true);
+      console.log('📤 Sending order to server...');
+      const res = await axios.post(`${BASE_URL}/api/orders`, formData);
 
-    // Navigate only if order ID is returned
-    if (res.data.orderId) {
-      setTimeout(() => {
-        navigate('/thank-you');
-      }, 2000);
-    } else {
-      alert('⚠️ Order placed but no orderId returned.');
+      console.log('✅ Server response:', res.data);
+      setSuccessMsg(res.data.message || 'Order placed successfully');
+
+      if (res.data.orderId) {
+        setTimeout(() => {
+          navigate('/thank-you');
+        }, 2000);
+      } else {
+        alert('⚠️ Order placed but no orderId returned.');
+      }
+    } catch (err) {
+      console.error('❌ Order submission error:', err);
+      alert('Failed to submit order');
+    } finally {
+      setLoading(false);
     }
-  } catch (err) {
-    console.error('❌ Order submission error:', err);
-    alert('Failed to submit order');
-  } finally {
-    setLoading(false);
-  }
-};
-
+  };
 
   return (
     <div className="container py-5">
@@ -69,6 +82,54 @@ const ConfirmOrder = () => {
           </div>
         )}
 
+        {/* 🧍 Customer Details */}
+        <div className="mb-4">
+          <h5 className="border-bottom pb-2 mb-3">Customer Details</h5>
+          <div className="row g-3">
+            <div className="col-md-6">
+              <label className="form-label fw-semibold">Full Name</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter your name"
+                value={customerName}
+                onChange={(e) => setCustomerName(e.target.value)}
+              />
+            </div>
+            <div className="col-md-6">
+              <label className="form-label fw-semibold">Email Address</label>
+              <input
+                type="email"
+                className="form-control"
+                placeholder="Enter your email"
+                value={customerEmail}
+                onChange={(e) => setCustomerEmail(e.target.value)}
+              />
+            </div>
+            <div className="col-md-6">
+              <label className="form-label fw-semibold">Phone Number</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter phone number"
+                value={customerPhone}
+                onChange={(e) => setCustomerPhone(e.target.value)}
+              />
+            </div>
+            <div className="col-md-6">
+              <label className="form-label fw-semibold">Location / Address</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Enter your location"
+                value={customerLocation}
+                onChange={(e) => setCustomerLocation(e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* 📦 Order Details */}
         <div className="row">
           <div className="col-md-6">
             <ul className="list-group mb-3">
