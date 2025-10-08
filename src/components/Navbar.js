@@ -108,7 +108,7 @@ const handleLogout = () => {
                             <div className="ms-flex">
                                 <div className="align-self-center ms-header-logo">
                                     <div className="header-logo">
-                                        <a href="index.html"><img src="assets/img/logo/logo.png" alt="Site Logo" /></a>
+                                        <Link to={'/'}><img src="assets/logo.png" alt="Site Logo" /></Link>
                                     </div>
                                 </div>
                                 <div className="align-self-center ms-header-search">

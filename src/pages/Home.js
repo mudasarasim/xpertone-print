@@ -161,8 +161,8 @@ const Home = () => {
                                     >
                                         <h5 style={{ color: 'white' }}>Official & Commercial Papers</h5>
                                         <p style={{ color: 'white' }}>The design of something special</p>
-                                        <a
-                                            href="/category/official-papers"
+                                        <Link
+                                            to={'/category/official-papers'}
                                             className="ms-btn-2"
                                             style={{
                                                 background: 'white',
@@ -174,7 +174,7 @@ const Home = () => {
                                             }}
                                         >
                                             Shop Now
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -221,8 +221,8 @@ const Home = () => {
                                     >
                                         <h5 style={{ color: 'white' }}>Shopping Bags</h5>
                                         <p style={{ color: 'white' }}>The design of something special</p>
-                                        <a
-                                            href="/category/shopping-bags"
+                                        <Link
+                                            to={'/category/shopping-bags'}
                                             className="ms-btn-2"
                                             style={{
                                                 marginLeft: '30px',
@@ -234,7 +234,7 @@ const Home = () => {
                                             }}
                                         >
                                             Shop Now
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
