@@ -1,114 +1,170 @@
-/* Profile.css */
-
-.profile-container {
+/* ✅ Layout */
+.profile-layout {
   display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  padding: 20px;
+  background-color: #f6f8fa;
 }
 
-.profile-card {
-  background: #fff;
-  width: 100%;
-  max-width: 450px;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* 🧭 Sidebar */
+.sidebar {
+  width: 250px;
+  background: linear-gradient(to right, #00544f, #00b786);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px 15px;
+  transition: all 0.3s ease;
 }
 
-.profile-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 25px 50px rgba(0,0,0,0.2);
-}
-
-.profile-header {
- background: linear-gradient(to right, #00544f, #00b786);
-  color: #fff;
+.sidebar-header {
   text-align: center;
-  padding: 40px 20px;
-  position: relative;
+  margin-bottom: 30px;
 }
 
-.profile-avatar {
-  width: 100px;
-  height: 100px;
+.sidebar-avatar {
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  border: 4px solid #fff;
-  object-fit: cover;
-  margin-bottom: 15px;
-  background-color: #fff;
+  margin-bottom: 10px;
+  border: 3px solid #3b82f6;
 }
 
-.profile-name {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 5px;
+.sidebar h3 {
+  margin: 5px 0;
+  font-size: 18px;
 }
 
-.profile-title {
-  font-size: 14px;
-  opacity: 0.9;
+.sidebar p {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 10px;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  color: #d1d5db;
+  text-align: left;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.nav-btn.logout {
+  color: white;
+  margin-top: auto;
+}
+
+.nav-btn.logout:hover {
+  background: #ef4444;
+}
+
+/* 📄 Main Content */
+.profile-main {
+  flex: 1;
+  padding: 40px;
+}
+
+.profile-card,
+.orders-section {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .profile-info {
-  padding: 30px 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 }
 
 .info-item {
   display: flex;
   justify-content: space-between;
-  padding: 15px 20px;
-  border-radius: 15px;
-  background: #f7f8fa;
-  transition: background 0.3s ease;
-}
-
-.info-item:hover {
-  background: #e0e7ff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 8px 0;
 }
 
 .info-label {
-  font-weight: 500;
-  color: #333;
+  font-weight: 600;
+  color: #374151;
 }
 
 .info-value {
+  color: #6b7280;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.orders-table th,
+.orders-table td {
+  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+  padding: 10px 12px;
+}
+
+.orders-table th {
+  background: #f9fafb;
   font-weight: 600;
-  color: #667eea;
+  color: #374151;
 }
 
-.loading-text {
-  text-align: center;
-  font-size: 18px;
-  font-weight: 500;
-  color: #667eea;
-  margin-top: 50px;
-}
-.profile-actions {
-  display: flex;
-  justify-content: center;
-  padding: 20px;
+.orders-table tr:hover {
+  background: #f3f4f6;
 }
 
-.logout-btn {
-  background: #ff4d4f;
-  color: #fff;
-  font-weight: 600;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+/* 📱 Responsive */
+@media (max-width: 768px) {
+  .profile-layout {
+    flex-direction: column;
+  }
 
-.logout-btn:hover {
-  background: #e04344;
-  transform: translateY(-2px);
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .sidebar-header {
+    display: none;
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    gap: 5px;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .nav-btn {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .profile-main {
+    padding: 20px;
+  }
 }

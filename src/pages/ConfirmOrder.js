@@ -29,47 +29,61 @@ const ConfirmOrder = () => {
   } = state;
 
   const handleSubmit = async () => {
-    if (!frontFile || !backFile) return alert('Both files are required');
-    if (!customerName || !customerEmail || !customerPhone || !customerLocation)
-      return alert('Please fill all customer details');
+  if (!frontFile || !backFile) return alert('Both files are required');
+  if (!customerName || !customerEmail || !customerPhone || !customerLocation)
+    return alert('Please fill all customer details');
 
-    const formData = new FormData();
-    formData.append('product_title', product.title);
-    formData.append('quantity', quantity);
-    formData.append('circulation', circulation);
-    formData.append('series', series);
-    formData.append('total_price', totalPrice);
-    formData.append('frontFile', frontFile);
-    formData.append('backFile', backFile);
+  const formData = new FormData();
+  formData.append('product_title', product.title);
+  formData.append('quantity', quantity);
+  formData.append('circulation', circulation);
+  formData.append('series', series);
+  formData.append('total_price', totalPrice);
+  formData.append('frontFile', frontFile);
+  formData.append('backFile', backFile);
+  formData.append('customer_name', customerName);
+  formData.append('customer_email', customerEmail);
+  formData.append('customer_phone', customerPhone);
+  formData.append('customer_location', customerLocation);
 
-    // ✅ Add customer details
-    formData.append('customer_name', customerName);
-    formData.append('customer_email', customerEmail);
-    formData.append('customer_phone', customerPhone);
-    formData.append('customer_location', customerLocation);
+  try {
+    setLoading(true);
+    console.log('📤 Sending order to server...');
 
-    try {
-      setLoading(true);
-      console.log('📤 Sending order to server...');
-      const res = await axios.post(`${BASE_URL}/api/orders`, formData);
-
-      console.log('✅ Server response:', res.data);
-      setSuccessMsg(res.data.message || 'Order placed successfully');
-
-      if (res.data.orderId) {
-        setTimeout(() => {
-          navigate('/thank-you');
-        }, 2000);
-      } else {
-        alert('⚠️ Order placed but no orderId returned.');
-      }
-    } catch (err) {
-      console.error('❌ Order submission error:', err);
-      alert('Failed to submit order');
-    } finally {
+    // ✅ Get token from localStorage
+    const token = localStorage.getItem('userToken');
+    if (!token) {
+      alert('You must be logged in to place an order.');
       setLoading(false);
+      return;
     }
-  };
+
+    // ✅ Send token in Authorization header
+    const res = await axios.post(`${BASE_URL}/api/orders`, formData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+
+    console.log('✅ Server response:', res.data);
+    setSuccessMsg(res.data.message || 'Order placed successfully');
+
+    if (res.data.orderId) {
+      setTimeout(() => {
+        navigate('/thank-you');
+      }, 2000);
+    } else {
+      alert('⚠️ Order placed but no orderId returned.');
+    }
+  } catch (err) {
+    console.error('❌ Order submission error:', err);
+    alert(err.response?.data?.message || 'Failed to submit order');
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="container py-5">

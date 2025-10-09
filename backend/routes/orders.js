@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const fs = require('fs');
 const db = require('../config/db'); // Your promise-based pool
+const authMiddleware = require('../middleware/authMiddleware');
 
 // Ensure uploads folder exists
 const uploadDir = 'uploads/';
@@ -16,7 +17,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // POST /api/orders
-router.post('/', upload.fields([{ name: 'frontFile' }, { name: 'backFile' }]), async (req, res) => {
+router.post('/', authMiddleware, upload.fields([{ name: 'frontFile' }, { name: 'backFile' }]), async (req, res) => {
   try {
     const {
       product_title,
@@ -37,12 +38,13 @@ router.post('/', upload.fields([{ name: 'frontFile' }, { name: 'backFile' }]), a
 
     const sql = `
       INSERT INTO orders
-      (product_title, quantity, circulation, series, total_price, front_file, back_file,
-       customer_name, customer_email, customer_phone, customer_location)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      (user_id, product_title, quantity, circulation, series, total_price,
+       front_file, back_file, customer_name, customer_email, customer_phone, customer_location)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     const [result] = await conn.execute(sql, [
+      req.user.id, // 👈 user_id from JWT
       product_title,
       quantity,
       circulation,
@@ -65,6 +67,20 @@ router.post('/', upload.fields([{ name: 'frontFile' }, { name: 'backFile' }]), a
   } catch (error) {
     console.error('❌ Order API error:', error);
     res.status(500).json({ error: 'Failed to place order' });
+  }
+});
+
+// ✅ Fetch orders for logged-in user
+router.get('/my-orders', authMiddleware, async (req, res) => {
+  try {
+    const [rows] = await db.query(
+      'SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC',
+      [req.user.id]
+    );
+    res.json(rows);
+  } catch (error) {
+    console.error('❌ Failed to fetch user orders:', error);
+    res.status(500).json({ error: 'Failed to fetch user orders' });
   }
 });
 
