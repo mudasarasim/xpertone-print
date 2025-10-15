@@ -12,7 +12,7 @@ const BestSellerProducts = () => {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          `${BASE_URL}/api/safety-products/category/Safety Vest`
+          `${BASE_URL}/api/safety-products/category/Safety Helmet`
         );
         if (Array.isArray(res.data)) {
           setProducts(res.data.slice(0, 8));
@@ -37,7 +37,7 @@ const BestSellerProducts = () => {
   if (products.length === 0) {
     return (
       <p className="text-center text-muted py-4">
-        No Safety Jacket products found.
+        No Safety helmets products found.
       </p>
     );
   }

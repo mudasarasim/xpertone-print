@@ -4,6 +4,8 @@ import CategorySidebar from '../components/CategorySidebar';
 import BestSellerProducts from '../components/BestSellerProducts';
 import NewArrivalProducts from '../components/NewArrivalProducts';
 import TopRatedProducts from "../components/TopRatedProducts";
+import BestSeller from "../components/BestSeller";
+
 
 
 import './Home.css';
@@ -92,7 +94,7 @@ const Home = () => {
                                     <div class="ms-bnr-info">
                                         <h2 style={{ color: 'white' }}>Bussiness Cards <br />For Your Bussiness</h2>
                                         <h3 style={{ color: 'white' }}>30% off sale <span style={{ color: 'white' }}>Hurry up!!!</span></h3>
-                                        <Link to={'/category/business-cards'} class="ms-btn-2">Shop now</Link>
+                                        <a href="/category/business-cards" class="ms-btn-2">Shop now</a>
                                     </div>
                                 </div>
                             </div>
@@ -161,8 +163,8 @@ const Home = () => {
                                     >
                                         <h5 style={{ color: 'white' }}>Official & Commercial Papers</h5>
                                         <p style={{ color: 'white' }}>The design of something special</p>
-                                        <Link
-                                            to={'/category/official-papers'}
+                                        <a
+                                            href="/category/official-papers"
                                             className="ms-btn-2"
                                             style={{
                                                 background: 'white',
@@ -174,7 +176,7 @@ const Home = () => {
                                             }}
                                         >
                                             Shop Now
-                                        </Link>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -221,8 +223,8 @@ const Home = () => {
                                     >
                                         <h5 style={{ color: 'white' }}>Shopping Bags</h5>
                                         <p style={{ color: 'white' }}>The design of something special</p>
-                                        <Link
-                                            to={'/category/shopping-bags'}
+                                        <a
+                                            href="/category/shopping-bags"
                                             className="ms-btn-2"
                                             style={{
                                                 marginLeft: '30px',
@@ -234,7 +236,7 @@ const Home = () => {
                                             }}
                                         >
                                             Shop Now
-                                        </Link>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -255,8 +257,147 @@ const Home = () => {
     <TopRatedProducts />
   </div>
 </section>
+  <section class="ms-offer-section padding-tb-30">
+                <div class="container" data-animation="fadeIn">
+                    <div class="row">
+
+                        <div className="col-md-6 mb-4">
+                            <div className="ms-ofr-banners">
+                                <div
+                                    className="ms-bnr-body"
+                                    style={{
+                                        position: 'relative',
+                                        overflow: 'hidden',
+                                        borderRadius: '10px',
+                                        height: '300px',
+                                        background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/img/papers.jpg') center center / cover no-repeat`
+                                    }}
+                                >
+                                    <span
+                                        className="lbl"
+                                        style={{
+                                            position: 'absolute',
+                                            top: '10px',
+                                            left: '10px',
+                                            background: 'black',
+                                            color: 'white',
+                                            padding: '5px 10px',
+                                            borderRadius: '4px'
+                                        }}
+                                    >
+                                        40% Off
+                                    </span>
+
+                                    <div
+                                        className="ms-bnr-detail"
+                                        style={{
+                                            position: 'absolute',
+                                            top: '50%',
+                                            left: '50%',
+                                            transform: 'translate(-50%, -50%)',
+                                            color: 'white',
+                                            textAlign: 'center'
+                                        }}
+                                    >
+                                        <h5 style={{ color: 'white' }}>Official & Commercial Papers</h5>
+                                        <p style={{ color: 'white' }}>The design of something special</p>
+                                        <a
+                                            href="/category/official-papers"
+                                            className="ms-btn-2"
+                                            style={{
+                                                background: 'white',
+                                                marginLeft: '30px',
+                                                color: 'black',
+                                                padding: '8px 20px',
+                                                borderRadius: '4px',
+                                                textDecoration: 'none'
+                                            }}
+                                        >
+                                            Shop Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
 
+                        <div className="col-md-6">
+                            <div className="ms-ofr-banners">
+                                <div
+                                    className="ms-bnr-body"
+                                    style={{
+                                        position: 'relative',
+                                        overflow: 'hidden',
+                                        borderRadius: '10px',
+                                        height: '300px',
+                                        background: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('assets/img/shoppingbag.jpg') center center / cover no-repeat`
+                                    }}
+                                >
+                                    <span
+                                        className="lbl"
+                                        style={{
+                                            position: 'absolute',
+                                            top: '10px',
+                                            left: '10px',
+                                            background: 'black',
+                                            color: 'white',
+                                            padding: '5px 10px',
+                                            borderRadius: '4px'
+                                        }}
+                                    >
+                                        30% Off
+                                    </span>
+
+                                    <div
+                                        className="ms-bnr-detail"
+                                        style={{
+                                            position: 'absolute',
+                                            top: '50%',
+                                            left: '50%',
+                                            transform: 'translate(-50%, -50%)',
+                                            color: 'white',
+                                            textAlign: 'center'
+                                        }}
+                                    >
+                                        <h5 style={{ color: 'white' }}>Shopping Bags</h5>
+                                        <p style={{ color: 'white' }}>The design of something special</p>
+                                        <a
+                                            href="/category/shopping-bags"
+                                            className="ms-btn-2"
+                                            style={{
+                                                marginLeft: '30px',
+                                                background: 'white',
+                                                color: 'black',
+                                                padding: '8px 20px',
+                                                borderRadius: '4px',
+                                                textDecoration: 'none'
+                                            }}
+                                        >
+                                            Shop Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+ <section className="ms-product-tab padding-tb-30 mt-4">
+  <div className="container">
+    <div className="row">
+      <div className="col-md-12">
+        <div className="section-title">
+          <h2>
+            Best <span> Sellers Group</span> Sheets
+          </h2>
+        </div>
+      </div>
+    </div>
+
+    <BestSeller />
+  </div>
+</section>
             <section class="ms-news-section padding-tb-30">
                 <div class="container">
                     <div class="row">
