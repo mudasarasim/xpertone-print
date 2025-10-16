@@ -46,7 +46,7 @@ const TopRatedProducts = () => {
                           <div className="image">
                             <img
                               className="main-image"
-                              src={`/uploads/${product.image}`} // ✅ consistent approach (no base URL for images)
+                              src={`${BASE_URL}/uploads/${product.image}`} // ✅ consistent approach (no base URL for images)
                               alt={product.title}
                             />
                           </div>
