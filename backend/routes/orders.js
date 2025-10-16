@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const fs = require('fs');
-const db = require('../config/db'); // Your promise-based pool
+const db = require('../config/db');
 const authMiddleware = require('../middleware/authMiddleware');
 
 // Ensure uploads folder exists
@@ -16,7 +16,9 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// POST /api/orders
+
+const sendEmail = require('../config/mailer'); // Import mailer at top
+
 router.post('/', authMiddleware, upload.fields([{ name: 'frontFile' }, { name: 'backFile' }]), async (req, res) => {
   try {
     const {
@@ -44,7 +46,7 @@ router.post('/', authMiddleware, upload.fields([{ name: 'frontFile' }, { name: '
     `;
 
     const [result] = await conn.execute(sql, [
-      req.user.id, // 👈 user_id from JWT
+      req.user.id,
       product_title,
       quantity,
       circulation,
@@ -57,11 +59,38 @@ router.post('/', authMiddleware, upload.fields([{ name: 'frontFile' }, { name: '
       customer_phone,
       customer_location,
     ]);
+const orderId = result.insertId; // ✅ define orderId
+
+    // Auto start printing process tracking
+    await db.query(
+      'INSERT INTO printing_process (order_id, customer_name, customer_phone, current_stage) VALUES (?, ?, ?, "Prepress")',
+      [result.insertId, customer_name, customer_phone]
+    );
 
     conn.release();
 
+    // ✅ Send email to admin
+    const emailHTML = `
+      <h2>New Order Placed - Order #${orderId}</h2>
+      <p><b>Order ID:</b> ${orderId}</p>
+      <p><strong>Customer Name:</strong> ${customer_name}</p>
+      <p><strong>Email:</strong> ${customer_email}</p>
+      <p><strong>Phone:</strong> ${customer_phone}</p>
+      <p><strong>Location:</strong> ${customer_location}</p>
+      <hr>
+      <p><strong>Product Title:</strong> ${product_title}</p>
+      <p><strong>Quantity:</strong> ${quantity}</p>
+      <p><strong>Circulation:</strong> ${circulation}</p>
+      <p><strong>Series:</strong> ${series}</p>
+      <p><strong>Total Price:</strong> ${total_price}</p>
+      <p><strong>Front File:</strong> ${frontFile}</p>
+      <p><strong>Back File:</strong> ${backFile}</p>
+    `;
+
+    await sendEmail('khubaibbintariq544@gmail.com', 'New Order Placed', emailHTML);
+
     res.status(200).json({
-      message: 'Order placed successfully',
+      message: 'Order placed successfully and email sent ✅',
       orderId: result.insertId,
     });
   } catch (error) {

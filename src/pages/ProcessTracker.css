@@ -1,0 +1,62 @@
+.process-tracker-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.process-tracker-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.process-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.process-table th,
+.process-table td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+}
+
+.stage-label {
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: bold;
+}
+
+.stage-label.prepress { background: #f39c12; }
+.stage-label.printing { background: #2980b9; }
+.stage-label.collating { background: #8e44ad; }
+.stage-label.binding { background: #16a085; }
+.stage-label.polywrap { background: #2ecc71; }
+.stage-label.shipping { background: #d35400; }
+.stage-label.completed { background: #27ae60; }
+
+.progress-bar {
+  height: 8px;
+  width: 100%;
+  background: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 8px;
+  background: linear-gradient(90deg, #00b09b, #96c93d);
+  transition: width 0.3s ease-in-out;
+}
+
+.stage-dropdown {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  outline: none;
+}

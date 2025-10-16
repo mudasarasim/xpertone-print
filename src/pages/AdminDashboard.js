@@ -24,6 +24,9 @@ const AdminDashboard = () => {
            <Link to="/admin/safety-orders" className="nav-link">
   <i className="fa fa-shield me-2"></i> View Safety Orders
 </Link>
+<Link to="/admin/process-tracker" className="nav-link">
+  <i className="fa fa-shield me-2"></i> Track All Orders
+</Link>
 
 
         </nav>

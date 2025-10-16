@@ -26,6 +26,7 @@ import SafetyProductDetails from './pages/SafetyProductDetails';
 import OrderPage from './pages/OrderPage';
 import Profile from "./pages/Profile";
 import AdminSafetyOrders from "./components/admin/AdminSafetyOrders";
+import ProcessTracker from "./pages/ProcessTracker";
 
 
 function AppWrapper() {
@@ -40,7 +41,7 @@ function AppWrapper() {
   }, []);
 
   // Paths jahan Navbar aur Footer hide karne hain
-  const hideNavbarFooterPaths = ["/admin"];
+  const hideNavbarFooterPaths = ["/login", "/admin"];
   const hideLayout = hideNavbarFooterPaths.some(path => location.pathname.startsWith(path));
 
   return (
@@ -81,6 +82,8 @@ function AppWrapper() {
         <Route path="/order" element={<OrderPage />} />
 <Route path="/profile" element={<Profile />} />
 <Route path="/admin/safety-orders" element={<AdminSafetyOrders />} />
+<Route path="/admin/process-tracker" element={<ProcessTracker />} />
+
 
       </Routes>
 
