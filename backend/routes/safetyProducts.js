@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // ✅ Allowed safety categories
-const safetyCategories = ['Safety Jackets', 'Safety Vest', 'Safety Helmet'];
+const safetyCategories = ['Safety vest', 'Cargo Trousers', 'Pant & Shirts/Coveralls'];
 
 // ------------------ ADD SAFETY PRODUCT ------------------
 router.post('/', upload.single('image'), async (req, res) => {
