@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../../config';
 
-const safetyCategories = ['Safety Jackets', 'Safety Vest', 'Safety Helmet'];
+const safetyCategories = ['Safety vest', 'Cargo Trousers', 'Pant & Shirts/Coveralls', 'Business Cards'];
 
 const AdminSafetyProducts = () => {
   const [products, setProducts] = useState([]);
