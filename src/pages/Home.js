@@ -73,7 +73,7 @@ const Home = () => {
       <div className="col-md-12">
         <div className="section-title">
           <h2>
-            Best <span> Sellers Group</span> Sheets
+            Pant &  <span>Shirts/Coveralls</span> Products
           </h2>
         </div>
       </div>
@@ -108,7 +108,8 @@ const Home = () => {
     <div className="row">
       <div className="col-md-12">
         <div className="section-title">
-          <h2>New <span>Arrival Group</span> Sheets</h2>
+          
+          <h2>Safet <span> Vest</span> Products</h2>
         </div>
       </div>
     </div>
@@ -119,7 +120,7 @@ const Home = () => {
 </section>
 
 
-            <section class="ms-offer-section padding-tb-30">
+            {/* <section class="ms-offer-section padding-tb-30">
                 <div class="container" data-animation="fadeIn">
                     <div class="row">
 
@@ -244,20 +245,20 @@ const Home = () => {
 
                     </div>
                 </div>
-            </section>
+            </section> */}
            <section className="ms-product-tab padding-tb-30">
   <div className="container">
     <div className="row">
       <div className="col-md-12">
         <div className="section-title">
-          <h2>Top <span>Rated Group</span> Sheets</h2>
+          <h2>Business <span>Cards</span></h2>
         </div>
       </div>
     </div>
     <TopRatedProducts />
   </div>
 </section>
-  <section class="ms-offer-section padding-tb-30">
+  {/* <section class="ms-offer-section padding-tb-30">
                 <div class="container" data-animation="fadeIn">
                     <div class="row">
 
@@ -382,8 +383,8 @@ const Home = () => {
 
                     </div>
                 </div>
-            </section>
- <section className="ms-product-tab padding-tb-30 mt-4">
+            </section> */}
+ {/* <section className="ms-product-tab padding-tb-30 mt-4">
   <div className="container">
     <div className="row">
       <div className="col-md-12">
@@ -397,7 +398,7 @@ const Home = () => {
 
     <BestSeller />
   </div>
-</section>
+</section> */}
             <section class="ms-news-section padding-tb-30">
                 <div class="container">
                     <div class="row">
