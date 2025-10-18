@@ -195,7 +195,7 @@ const handleLogout = () => {
                                                 <ul>
                                                     <li className="non-drop"><Link to={'/'}>Home</Link></li>
 
-                                                    <li className="dropdown drop-list">
+                                                    {/* <li className="dropdown drop-list">
                                                         <a href="/" className="dropdown-arrow">
                                                             Categories <i className="msicon msi-angle-right"></i>
                                                         </a>
@@ -220,13 +220,15 @@ const handleLogout = () => {
 
                                                            </ul>
 
-                                                    </li>
-                                                    
-                                                   <li className="non-drop"><Link to={'/about'}>About Us</Link></li>
+                                                    </li> */}
+                                                     <li className="non-drop"><Link to="/category/safety-vest">Safety Vest</Link></li>
+                               <li className="non-drop"><Link to="/category/cargo-trousers">Cargo Trousers</Link></li>
+                               <li className="non-drop"><Link to="/category/safety-jackets">Pant & Shirts/Coveralls </Link></li>
+                               <li className="non-drop"><Link to="/category/business-cards">Business Cards</Link></li>
+                               
                                                     <li className="non-drop"><Link to={'/contact'}>Contact Us</Link></li>
                                                    
-                                                    <li className="non-drop"><a href="discover.html"><img src="assets/img/icons/discover.svg" className="svg_img" alt="discover" />Discover</a></li>
-                                                </ul>
+                                                    </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -280,7 +282,7 @@ const handleLogout = () => {
                             <ul>
                                 <li><Link href="/">Home</Link></li>
 
-                                <li><a href="javascript:void(0)">Categories</a>
+                                {/* <li><a href="javascript:void(0)">Categories</a>
                                     <ul className="sub-menu">
                                         <li><Link to="/category/business-cards">Business Cards</Link></li>
                                                            <li><Link to="/category/premium-business-cards">Premium Business Cards</Link></li>
@@ -301,8 +303,11 @@ const handleLogout = () => {
 <li><Link to="/category/safety-helmets">Safety Helmet</Link></li>
 
                                     </ul>
-                                </li>
-                               <li><Link href="/about">About Us</Link></li>
+                                </li> */}
+                               <li><Link to="/category/safety-vest">Safety Vest</Link></li>
+                               <li><Link to="/category/safety-vest">Cargo Trousers</Link></li>
+                               <li><Link to="/category/safety-jackets">Pant & Shirts/Coveralls </Link></li>
+                               <li><Link to="/category/business-cards">Business Cards</Link></li>
                                <li><Link href="/contact">Contact Us</Link></li>
                             </ul>
                         </div>
