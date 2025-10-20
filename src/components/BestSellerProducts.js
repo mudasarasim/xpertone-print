@@ -64,13 +64,10 @@ const BestSellerProducts = () => {
               <div className="product-info">
                 <h6>Available Sizes:</h6>
                 <div className="size-list">
-                  {Array.isArray(JSON.parse(product.size))
-                    ? JSON.parse(product.size).map((s, i) => (
-                        <span key={i} className="size-tag">
-                          {s}
-                        </span>
-                      ))
-                    : product.size}
+                 {Array.isArray(JSON.parse(product.size))
+  ? JSON.parse(product.size).join(", ")
+  : product.size}
+
                 </div>
                 <div className="circulation-item mt-2">
                   <span className="text-muted">AED</span>

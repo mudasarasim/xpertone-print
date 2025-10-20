@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "./BestSellerProducts.css"; // 👈 using updated CSS
+import "./BestSellerProducts.css";
 import { BASE_URL } from "../config";
 
 const BestSellerProducts = () => {
@@ -12,13 +12,13 @@ const BestSellerProducts = () => {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          `${BASE_URL}/api/safety-products/category/Safety Vest`
+          `${BASE_URL}/api/safety-products/category/Safety-Vest`
         );
         if (Array.isArray(res.data)) {
-          setProducts(res.data.slice(0, 8));
+          setProducts(res.data.slice(0, 8)); // show only first 8 items
         }
       } catch (error) {
-        console.error("Error fetching products:", error);
+        console.error("Error fetching Safety Vest products:", error);
       } finally {
         setLoading(false);
       }
@@ -37,7 +37,7 @@ const BestSellerProducts = () => {
   if (products.length === 0) {
     return (
       <p className="text-center text-muted py-4">
-        No Safety Jacket products found.
+        No Safety Vest products found.
       </p>
     );
   }
@@ -45,10 +45,7 @@ const BestSellerProducts = () => {
   return (
     <div className="row">
       {products.map((product) => (
-        <div
-          className="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex"
-          key={product.id}
-        >
+        <div className="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex" key={product.id}>
           <div className="product-card flex-fill">
             <Link
               to={`/safety-product/product/${product.id}`}
@@ -65,9 +62,14 @@ const BestSellerProducts = () => {
               <div className="product-title-bar">{product.title}</div>
 
               <div className="product-info">
-                <h6>Available Circulations:</h6>
-                <div className="circulation-item">
-                  <span>AED</span>
+                <h6>Available Sizes:</h6>
+                <div className="size-list">
+                  {Array.isArray(JSON.parse(product.size))
+                    ? JSON.parse(product.size).join(", ")
+                    : product.size}
+                </div>
+                <div className="circulation-item mt-2">
+                  <span className="text-muted">AED</span>
                   <span className="price">{product.price}</span>
                 </div>
               </div>

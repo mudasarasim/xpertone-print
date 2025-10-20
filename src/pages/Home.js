@@ -26,7 +26,33 @@ const Home = () => {
           <div
             className="ms-slide-item swiper-slide d-flex slide-1"
             style={{
-              backgroundImage: 'url("assets/img/product-images/sl1.jpg")',
+              backgroundImage: 'url("assets/2.jpeg")',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              border: "1px solid grey",
+              minHeight: "70vh", // responsive height
+              width: "100%"
+            }}
+          >
+          </div>
+          <div
+            className="ms-slide-item swiper-slide d-flex slide-1"
+            style={{
+              backgroundImage: 'url("assets/4.jpeg")',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              border: "1px solid grey",
+              minHeight: "70vh", // responsive height
+              width: "100%"
+            }}
+          >
+          </div>
+          <div
+            className="ms-slide-item swiper-slide d-flex slide-1"
+            style={{
+              backgroundImage: 'url("assets/3.jpeg")',
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
@@ -41,7 +67,7 @@ const Home = () => {
           <div
             className="ms-slide-item swiper-slide d-flex slide-2"
             style={{
-              backgroundImage: 'url("assets/img/product-images/sl2.jpg")',
+              backgroundImage: 'url("assets/1.jpeg")',
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
