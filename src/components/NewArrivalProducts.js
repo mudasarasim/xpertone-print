@@ -12,7 +12,7 @@ const BestSellerProducts = () => {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          `${BASE_URL}/api/safety-products/category/Safety-Vest`
+          `${BASE_URL}/api/safety-products/category/Safety Vest`
         );
         if (Array.isArray(res.data)) {
           setProducts(res.data.slice(0, 8)); // show only first 8 items

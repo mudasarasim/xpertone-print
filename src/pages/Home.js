@@ -135,7 +135,7 @@ const Home = () => {
       <div className="col-md-12">
         <div className="section-title">
           
-          <h2>Safet <span> Vest</span> Products</h2>
+          <h2>Safety <span> Vest</span> Products</h2>
         </div>
       </div>
     </div>
