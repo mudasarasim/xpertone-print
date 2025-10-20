@@ -99,7 +99,7 @@ const SafetyProductDetails = () => {
         {/* Product Details */}
         <div className="col-md-6">
           <div className="details-card p-4 shadow-sm rounded bg-white">
-            <h2 className="mb-3 product-title">{product.title}</h2>
+            <h2 className="mb-3 product-title" style={{background: 'transparent'}}>{product.title}</h2>
             <p><strong>Label:</strong> {product.label}</p>
             <p><strong>Category:</strong> {product.category}</p>
             <p><strong>Price:</strong> AED {product.price}</p>
