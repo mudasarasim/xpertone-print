@@ -40,6 +40,7 @@ const AdminSafetyOrders = () => {
               <th>Large</th>
               <th>XL</th>
               <th>Total (AED)</th>
+              <th>Design Image</th> {/* ✅ Added */}
             </tr>
           </thead>
           <tbody>
@@ -57,11 +58,39 @@ const AdminSafetyOrders = () => {
                   <td>{o.large_qty}</td>
                   <td>{o.xl_qty}</td>
                   <td><strong>{o.total_price}</strong></td>
+
+                  {/* ✅ Show uploaded design image */}
+                  <td>
+                    {o.design_image ? (
+                      <>
+                        <img
+                          src={`${BASE_URL}/uploads/${o.design_image}`}
+                          alt="Design"
+                          width="80"
+                          height="80"
+                          style={{ objectFit: "cover", borderRadius: "8px" }}
+                        />
+                        <br />
+                        <a
+                          href={`${BASE_URL}/uploads/${o.design_image}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-sm btn-outline-primary mt-2"
+                        >
+                          View Full
+                        </a>
+                      </>
+                    ) : (
+                      <span className="text-muted">No Image</span>
+                    )}
+                  </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="11" className="text-muted">No safety orders found.</td>
+                <td colSpan="12" className="text-muted">
+                  No safety orders found.
+                </td>
               </tr>
             )}
           </tbody>

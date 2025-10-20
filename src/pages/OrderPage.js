@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import {BASE_URL} from '../config';
+import { BASE_URL } from '../config';
 
 const OrderPage = () => {
   const navigate = useNavigate();
@@ -15,8 +15,14 @@ const OrderPage = () => {
     location: '',
   });
 
+  const [image, setImage] = useState(null); // ✅ image state
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
   };
 
   const handlePlaceOrder = async () => {
@@ -30,13 +36,20 @@ const OrderPage = () => {
       return;
     }
 
+    const data = new FormData();
+    data.append('customer_name', formData.name);
+    data.append('customer_email', formData.email);
+    data.append('customer_phone', formData.phone);
+    data.append('delivery_location', formData.location);
+    data.append('products', JSON.stringify(items)); // ✅ send items array as string
+
+    if (image) {
+      data.append('image', image); // ✅ include uploaded image
+    }
+
     try {
-      await axios.post(`${BASE_URL}/api/safetyorder`, {
-        customer_name: formData.name,
-        customer_email: formData.email,
-        customer_phone: formData.phone,
-        delivery_location: formData.location,
-        products: items,
+      await axios.post(`${BASE_URL}/api/safetyorder`, data, {
+        headers: { 'Content-Type': 'multipart/form-data' },
       });
 
       alert('✅ Order placed successfully!');
@@ -47,16 +60,19 @@ const OrderPage = () => {
     }
   };
 
-  // Calculate total price per product
   const calculateProductTotal = (item) => {
     if (!item.sizeQuantities) return item.price || 0;
-    return Object.values(item.sizeQuantities).reduce((sum, qty) => sum + qty * (item.price || 0), 0);
+    return Object.values(item.sizeQuantities).reduce(
+      (sum, qty) => sum + qty * (item.price || 0),
+      0
+    );
   };
 
   return (
     <div className="container mt-5">
       <h2 className="mb-4">Place Your Order</h2>
 
+      {/* Customer Details */}
       <div className="card shadow-sm p-4 mb-5">
         <h5 className="mb-3">Customer Details</h5>
         <div className="mb-3">
@@ -99,8 +115,30 @@ const OrderPage = () => {
             onChange={handleChange}
           />
         </div>
+
+        {/* ✅ Image Upload Field */}
+        <div className="mb-3">
+          <label className="form-label fw-bold">Attach Design (optional):</label>
+          <input
+            type="file"
+            accept="image/*"
+            className="form-control"
+            onChange={handleImageChange}
+          />
+          {image && (
+            <div className="mt-2">
+              <img
+                src={URL.createObjectURL(image)}
+                alt="Preview"
+                className="img-fluid rounded"
+                style={{ maxHeight: '150px' }}
+              />
+            </div>
+          )}
+        </div>
       </div>
 
+      {/* Order Summary */}
       <h5 className="mb-3">Order Summary</h5>
       <div className="row">
         {items.map((item, index) => (
@@ -119,17 +157,22 @@ const OrderPage = () => {
                   <div className="card-body">
                     <h6 className="card-title mb-1">{item.title}</h6>
 
-                    {/* Display all size quantities with price */}
+                    {/* ✅ Show only non-zero quantities */}
                     <p className="mb-1">
                       <strong>Quantity:</strong>{' '}
                       {item.sizeQuantities
                         ? Object.entries(item.sizeQuantities)
-                            .map(([size, qty]) => `${size}(${qty} x AED ${item.price} = AED ${qty * item.price})`)
+                            .filter(([size, qty]) => qty > 0)
+                            .map(
+                              ([size, qty]) =>
+                                `${size} (${qty} x AED ${item.price} = AED ${
+                                  qty * item.price
+                                })`
+                            )
                             .join(', ')
-                        : `${item.size}(${item.quantity})`}
+                        : `${item.size} (${item.quantity})`}
                     </p>
 
-                    {/* Total price per product */}
                     <p className="mb-0">
                       <strong>Total:</strong> AED {calculateProductTotal(item)}
                     </p>
