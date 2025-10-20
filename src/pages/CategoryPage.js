@@ -10,13 +10,13 @@ import './CategoryPage.css';
 // ✅ Map URL-friendly labels to DB categories
 const categoryMap = {
   'safety-vest': 'Safety Vest',
-  'safety-jackets': 'Safety Jackets',
+  'Pant-Shirts-Coveralls': 'Pant-Shirts-Coveralls',
   'safety-cargo-trousers': 'Safety Cargo Trousers',
   // 'safety-helmets': 'Safety Helmet',
 };
 
 // ✅ Safety product categories list
-const safetyCategories = ['Safety Vest', 'Safety Jackets', 'Safety Cargo Trousers'];
+const safetyCategories = ['Safety Vest', 'Pant-Shirts-Coveralls', 'Safety Cargo Trousers'];
 
 const CategoryWise = () => {
   const { addToCart } = useCart();
@@ -37,29 +37,30 @@ const CategoryWise = () => {
 
   // ✅ Fetch products based on category type (safety or normal)
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        let res;
-        const backendCategory = categoryMap[label];
+  const fetchProducts = async () => {
+    try {
+      let res;
+      const backendCategory = categoryMap[label];
 
-        if (backendCategory && safetyCategories.includes(backendCategory)) {
-          // 🦺 Safety product fetch
-          res = await axios.get(
-            `${BASE_URL}/api/safety-products/category/${backendCategory}`
-          );
-        } else {
-          // 🛍 Normal product fetch
-          res = await axios.get(`${BASE_URL}/api/products/category/${label}`);
-        }
-
-        setProducts(res.data);
-      } catch (err) {
-        console.error('Category fetch error:', err);
+      if (backendCategory && safetyCategories.includes(backendCategory)) {
+        res = await axios.get(`${BASE_URL}/api/safety-products/category/${backendCategory}`);
+      } else {
+        res = await axios.get(`${BASE_URL}/api/products/category/${label}`);
       }
-    };
 
-    fetchProducts();
-  }, [label]);
+      console.log('Fetched products:', res.data); // 👈 check what comes back
+
+      // ✅ Handle both possible response formats
+      setProducts(Array.isArray(res.data) ? res.data : res.data.products || []);
+    } catch (err) {
+      console.error('Category fetch error:', err);
+      setProducts([]); // fallback
+    }
+  };
+
+  fetchProducts();
+}, [label]);
+
 
   return (
     <>

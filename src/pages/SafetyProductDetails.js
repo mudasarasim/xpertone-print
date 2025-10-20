@@ -4,7 +4,7 @@ import axios from 'axios';
 import './SafetyProductDetails.css';
 import {BASE_URL} from '../config';
 
-const safetyCategories = ['Safety Jackets', 'Safety Vest', 'Safety Helmet'];
+const safetyCategories = ['Safety Vest', 'Pant-Shirts-Coveralls', 'Safety Cargo Trousers'];
 
 const SafetyProductDetails = () => {
   const { id } = useParams();

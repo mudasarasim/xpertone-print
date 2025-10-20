@@ -222,8 +222,8 @@ const handleLogout = () => {
 
                                                     </li> */}
                                                      <li className="non-drop"><Link to="/category/safety-vest">Safety Vest</Link></li>
-                               <li className="non-drop"><Link to="/category/cargo-trousers">Cargo Trousers</Link></li>
-                               <li className="non-drop"><Link to="/category/safety-jackets">Pant & Shirts/Coveralls </Link></li>
+                               <li className="non-drop"><Link to="/category/safety-cargo-trousers">Cargo Trousers</Link></li>
+                               <li className="non-drop"><Link to="/category/Pant-Shirts-Coveralls">Pant & Shirts/Coveralls </Link></li>
                                <li className="non-drop"><Link to="/category/business-cards">Business Cards</Link></li>
                                
                                                     <li className="non-drop"><Link to={'/contact'}>Contact Us</Link></li>
@@ -235,7 +235,32 @@ const handleLogout = () => {
                                 </div>
                             </div>
 
-                            
+                            <div className="col ms-location-block">
+                                <div className="ms-location-menu">
+                                    <div className="ms-location-toggle">
+                                        <img src="assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" />
+                                        <span className="ms-location-title d-1199 ms-location" id="ms_location"></span>
+                                        <i className="msicon msi-angle-down d-1199" aria-hidden="true"></i>
+                                    </div>
+                                    {/* <div className="ms-location-content">
+                                        <div className="ms-location-dropdown">
+                                            <div className="row ms-location-wrapper">
+                                                <ul className="loc-grid">
+                                                    <li className="loc-list current">
+                                                        <img src="assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" /><span className="ms-detail-current">current Location</span>
+                                                    </li>
+                                                    <li className="loc-list"><img src="assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" /><span className="ms-detail">rajkot, in</span></li>
+                                                    <li className="loc-list"><img src="assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" /><span className="ms-detail">Mountain View, us</span></li>
+                                                    <li className="loc-list"><img src="assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" /><span className="ms-detail">Birmingham, UK</span></li>
+                                                    <li className="loc-list"><img src="assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" /><span className="ms-detail">Jakarta, id</span></li>
+                                                    <li className="loc-list"><img src="assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" /><span className="ms-detail">lima, pe</span></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div> */}
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

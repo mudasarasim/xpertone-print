@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "./BestSellerProducts.css"; // 👈 using updated CSS
 import { BASE_URL } from "../config";
+import { useCart } from "../context/CartContext";
+import "./BestSellerProducts.css";
 
 const BestSellerProducts = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { addToCart } = useCart();
+
+  // ✅ Parse size strings (handles commas, spaces, etc.)
+  const parseSizes = (sizeString) => {
+    if (!sizeString) return [];
+    return sizeString.split(/[, ]+/).map((s) => s.trim()).filter(Boolean);
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const res = await axios.get(
-          `${BASE_URL}/api/safety-products/category/Safety Helmet`
+          `${BASE_URL}/api/safety-products/category/Pant & Shirts/Coveralls`
         );
         if (Array.isArray(res.data)) {
-          setProducts(res.data.slice(0, 8));
+          setProducts(res.data);
         }
       } catch (error) {
         console.error("Error fetching products:", error);
@@ -37,24 +45,22 @@ const BestSellerProducts = () => {
   if (products.length === 0) {
     return (
       <p className="text-center text-muted py-4">
-        No Safety helmets products found.
+        No products found in this category.
       </p>
     );
   }
 
   return (
-    <div className="row">
+    <div className="row g-4">
       {products.map((product) => (
-        <div
-          className="col-lg-3 col-md-4 col-sm-6 mb-4 d-flex"
-          key={product.id}
-        >
-          <div className="product-card flex-fill">
+        <div className="col-lg-3 col-md-4 col-sm-6" key={product.id}>
+          <div className="product-card shadow-sm">
             <Link
               to={`/safety-product/product/${product.id}`}
-              style={{ textDecoration: "none", color: "inherit" }}
+              className="text-decoration-none text-dark"
             >
-              <div className="product-image-container">
+              {/* 🖼 Image */}
+              <div className="product-image-wrapper">
                 <img
                   src={`${BASE_URL}/uploads/${product.image}`}
                   alt={product.title}
@@ -62,13 +68,24 @@ const BestSellerProducts = () => {
                 />
               </div>
 
-              <div className="product-title-bar">{product.title}</div>
+              {/* 🏷 Title */}
+              <div className="product-title bg-gradient text-white text-center py-2 fw-bold">
+                {product.title}
+              </div>
 
-              <div className="product-info">
-                <h6>Available Circulations:</h6>
-                <div className="circulation-item">
-                  <span>AED</span>
-                  <span className="price">{product.price}</span>
+              {/* 📏 Sizes */}
+              <div className="product-details text-center py-3">
+                <p className="mb-1 fw-semibold text-dark">Available Sizes:</p>
+                <p className="sizes-text mb-0 text-muted">
+                  {parseSizes(product.size).join(", ") || "N/A"}
+                </p>
+
+                {/* 💰 Price */}
+                <div className="price-section mt-3">
+                  <span className="currency">AED</span>{" "}
+                  <span className="price text-danger fw-bold">
+                    {parseFloat(product.price).toFixed(2)}
+                  </span>
                 </div>
               </div>
             </Link>
