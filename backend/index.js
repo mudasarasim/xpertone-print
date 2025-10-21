@@ -10,7 +10,9 @@ const allowedOrigins = [
   'http://localhost:3000',       // local dev
   'http://175.41.162.115:5000',  // deployed frontend with port
   'http://175.41.162.115',       // deployed frontend without port
-  'https://yourdomain.com'       // optional - your custom domain (if any)
+  'http://xpertoneprints.com:5000',       // optional - your custom domain (if any)
+  'http://xpertoneprints.com',       // optional - your custom domain (if any)
+  'https://xpertoneprints.com',       // optional - your custom domain (if any)
 ];
 
 // ✅ CORS configuration
