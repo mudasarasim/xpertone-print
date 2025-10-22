@@ -6,7 +6,9 @@ const axios = require('axios');
 
 const app = express();
 
-// ✅ Allowed origins
+/* --------------------------------------------
+   ✅ Allowed Origins for CORS
+-------------------------------------------- */
 const allowedOrigins = [
   'http://localhost:3000',
   'http://175.41.162.115',
@@ -16,28 +18,36 @@ const allowedOrigins = [
   'https://xpertoneprints.com',
 ];
 
-// ✅ CORS configuration
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true); // allow Postman/mobile apps
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    } else {
-      console.warn(`❌ CORS Blocked Origin: ${origin}`);
-      return callback(new Error('Not allowed by CORS'));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+/* --------------------------------------------
+   ✅ CORS Configuration
+-------------------------------------------- */
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin) return callback(null, true); // allow Postman / mobile apps
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        console.warn(`❌ CORS Blocked Origin: ${origin}`);
+        return callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+);
 
-// ✅ Middleware
+/* --------------------------------------------
+   ✅ Middleware
+-------------------------------------------- */
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 app.use('/uploads', express.static('uploads'));
 
-// ✅ Routes Imports
+/* --------------------------------------------
+   ✅ Route Imports
+-------------------------------------------- */
 const authRoutes = require('./routes/auth');
 const productRoutes = require('./routes/products');
 const orderRoutes = require('./routes/orders');
@@ -49,7 +59,9 @@ const safetyOrderRoutes = require('./routes/safetyorder');
 const profileRoutes = require('./routes/profile');
 const processFlowRoutes = require('./routes/processFlow');
 
-// ✅ Register API Routes
+/* --------------------------------------------
+   ✅ Register API Routes
+-------------------------------------------- */
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
@@ -61,27 +73,46 @@ app.use('/api/safetyorder', safetyOrderRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/process', processFlowRoutes);
 
-// ✅ Free & CORS-friendly IP lookup (no API key needed)
+/* --------------------------------------------
+   ✅ IP Info Route (Fixed for CORS)
+   - Acts as a backend proxy for frontend calls
+   - Frontend can now safely use `/api/ipinfo`
+-------------------------------------------- */
 app.get('/api/ipinfo', async (req, res) => {
   try {
-    const response = await axios.get('https://ipwho.is/');
+    // Using ipapi.co (real data source)
+    const response = await axios.get('https://ipapi.co/json/');
     res.json(response.data);
   } catch (error) {
     console.error('❌ Failed to fetch IP info:', error.message);
-    res.status(500).json({ error: 'Failed to fetch IP info' });
+
+    // Fallback to ipwho.is (CORS-friendly)
+    try {
+      const fallbackResponse = await axios.get('https://ipwho.is/');
+      res.json(fallbackResponse.data);
+    } catch (fallbackError) {
+      console.error('❌ Fallback also failed:', fallbackError.message);
+      res.status(500).json({ error: 'Failed to fetch IP info' });
+    }
   }
 });
 
-// ✅ Serve React Frontend (build folder)
+/* --------------------------------------------
+   ✅ Serve React Frontend (build folder)
+-------------------------------------------- */
 const frontendPath = path.join(__dirname, '..', 'build');
 app.use(express.static(frontendPath));
 
-// ✅ Handle React Router (SPA)
+/* --------------------------------------------
+   ✅ Handle React Router (SPA)
+-------------------------------------------- */
 app.get('*', (req, res) => {
   res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
-// ✅ Start Server
+/* --------------------------------------------
+   ✅ Start Server
+-------------------------------------------- */
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`✅ Server running on port ${PORT}`);
