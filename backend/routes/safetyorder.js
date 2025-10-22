@@ -46,7 +46,7 @@ router.post('/', upload.single('image'), async (req, res) => {
       <p><strong>Delivery Location:</strong> ${delivery_location}</p>
       ${
         design_image
-          ? `<p><strong>Design Image:</strong></p><img src="http://175.41.162.115:5000/uploads/${design_image}" width="150"/>`
+          ? `<p><strong>Design Image:</strong></p><img src="https://xpertoneprints.com/uploads/${design_image}" width="150"/>`
           : ''
       }
       <hr>
@@ -98,7 +98,7 @@ router.post('/', upload.single('image'), async (req, res) => {
         <p><strong>Product:</strong> ${item.title}</p>
         ${
           product_image
-            ? `<img src="http://175.41.162.115:5000/uploads/${product_image}" width="100" />`
+            ? `<img src="https://xpertoneprints.com/uploads/${product_image}" width="100" />`
             : ''
         }
         <p>S: ${S} | M: ${M} | L: ${L} | XL: ${XL}</p>
