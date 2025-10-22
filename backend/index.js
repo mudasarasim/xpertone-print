@@ -10,12 +10,13 @@ const app = express();
    ✅ Allowed Origins for CORS
 -------------------------------------------- */
 const allowedOrigins = [
+   'http://xpertoneprints.com',
+  'http://xpertoneprints.com:5000',
+  'https://xpertoneprints.com',
   'http://localhost:3000',
   'http://175.41.162.115',
   'http://175.41.162.115:5000',
-  'http://xpertoneprints.com',
-  'http://xpertoneprints.com:5000',
-  'https://xpertoneprints.com',
+ 
 ];
 
 /* --------------------------------------------
