@@ -8,7 +8,7 @@ const app = express();
 /* --------------------------------------------
    ✅ Middleware for Body Parsing
 -------------------------------------------- */
-app.use(express.json({ limit: '50mb' })); // Increase JSON size limit if necessary
+app.use(express.json({ limit: '50mb' })); // Allows large JSON payloads
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // Static folder for uploads
@@ -43,11 +43,10 @@ app.use('/api/profile', profileRoutes);
 app.use('/api/process', processFlowRoutes);
 
 /* --------------------------------------------
-   ✅ IP Info Route (Fixed for CORS)
+   ✅ IP Info Route (CORS-Safe & API-Fallback)
 -------------------------------------------- */
 app.get('/api/ipinfo', async (req, res) => {
   try {
-    // Use ipwho.is API to fetch IP info
     const response = await axios.get('https://ipwho.is/');
     res.json(response.data);
   } catch (error) {
@@ -59,13 +58,14 @@ app.get('/api/ipinfo', async (req, res) => {
 /* --------------------------------------------
    ✅ Serve React Frontend (build folder)
 -------------------------------------------- */
-const frontendPath = path.join(__dirname, '..', 'build'); // React build folder
+const frontendPath = path.join(__dirname, '..', 'build'); // React build path
 app.use(express.static(frontendPath));
 
 /* --------------------------------------------
-   ✅ Handle React Router (SPA)
+   ✅ Handle React Router (SPA Fallback)
+   Fixes path-to-regexp '*' crash in latest Express
 -------------------------------------------- */
-app.get('*', (req, res) => {
+app.get(/.*/, (req, res) => {
   res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
