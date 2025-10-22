@@ -10,13 +10,10 @@ const app = express();
    ✅ Allowed Origins for CORS
 -------------------------------------------- */
 const allowedOrigins = [
-   'http://xpertoneprints.com',
-  'http://xpertoneprints.com:5000',
-  'https://xpertoneprints.com',
-  'http://localhost:3000',
-  'http://175.41.162.115',
-  'http://175.41.162.115:5000',
- 
+   'https://xpertoneprints.com',    // Make sure frontend is using HTTPS
+   'http://xpertoneprints.com',     // Also allow HTTP for local testing if needed
+   'https://localhost:3000',        // If you're working with local development
+   'http://localhost:3000',         // Same here for local dev (if necessary)
 ];
 
 /* --------------------------------------------
@@ -25,7 +22,7 @@ const allowedOrigins = [
 app.use(
   cors({
     origin: function (origin, callback) {
-      if (!origin) return callback(null, true); // allow Postman / mobile apps
+      if (!origin) return callback(null, true); // Allow requests from Postman / mobile apps
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
       } else {
@@ -75,13 +72,12 @@ app.use('/api/profile', profileRoutes);
 app.use('/api/process', processFlowRoutes);
 
 /* --------------------------------------------
-   ✅ IP Info Route (Fixed for CORS)
-   - Acts as a backend proxy for frontend calls
-   - Frontend can now safely use `/api/ipinfo`
+   ✅ IP Info Route (Using ipwho.is)
+   - Backend proxy route to fetch IP info
 -------------------------------------------- */
-// ✅ Free IP API fix using ipwho.is
 app.get('/api/ipinfo', async (req, res) => {
   try {
+    // Fetch IP info using ipwho.is (CORS compliant)
     const response = await axios.get('https://ipwho.is/');
     res.json(response.data);
   } catch (error) {
@@ -89,7 +85,6 @@ app.get('/api/ipinfo', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch IP info' });
   }
 });
-
 
 /* --------------------------------------------
    ✅ Serve React Frontend (build folder)
