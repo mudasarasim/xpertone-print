@@ -79,24 +79,17 @@ app.use('/api/process', processFlowRoutes);
    - Acts as a backend proxy for frontend calls
    - Frontend can now safely use `/api/ipinfo`
 -------------------------------------------- */
+// ✅ Free IP API fix using ipwho.is
 app.get('/api/ipinfo', async (req, res) => {
   try {
-    // Using ipapi.co (real data source)
-    const response = await axios.get('https://ipapi.co/json/');
+    const response = await axios.get('https://ipwho.is/');
     res.json(response.data);
   } catch (error) {
     console.error('❌ Failed to fetch IP info:', error.message);
-
-    // Fallback to ipwho.is (CORS-friendly)
-    try {
-      const fallbackResponse = await axios.get('https://ipwho.is/');
-      res.json(fallbackResponse.data);
-    } catch (fallbackError) {
-      console.error('❌ Fallback also failed:', fallbackError.message);
-      res.status(500).json({ error: 'Failed to fetch IP info' });
-    }
+    res.status(500).json({ error: 'Failed to fetch IP info' });
   }
 });
+
 
 /* --------------------------------------------
    ✅ Serve React Frontend (build folder)
