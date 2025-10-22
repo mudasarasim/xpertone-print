@@ -61,10 +61,10 @@ app.use('/api/safetyorder', safetyOrderRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/process', processFlowRoutes);
 
-// ✅ New proxy route to fix ipapi.co CORS issue
+// ✅ Free & CORS-friendly IP lookup (no API key needed)
 app.get('/api/ipinfo', async (req, res) => {
   try {
-    const response = await axios.get('https://ipapi.co/json/');
+    const response = await axios.get('https://ipwho.is/');
     res.json(response.data);
   } catch (error) {
     console.error('❌ Failed to fetch IP info:', error.message);
