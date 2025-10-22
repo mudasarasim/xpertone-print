@@ -1,49 +1,17 @@
 require('dotenv').config();
 const express = require('express');
-const cors = require('cors');
 const path = require('path');
 const axios = require('axios');
 
 const app = express();
 
 /* --------------------------------------------
-   ✅ Allowed Origins for CORS
+   ✅ Middleware for Body Parsing
 -------------------------------------------- */
-const allowedOrigins = [
-   'http://xpertoneprints.com',
-  'http://xpertoneprints.com:5000',
-  'https://xpertoneprints.com',
-  'http://localhost:3000',
-  'http://175.41.162.115',
-  'http://175.41.162.115:5000',
- 
-];
-
-/* --------------------------------------------
-   ✅ CORS Configuration
--------------------------------------------- */
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      if (!origin) return callback(null, true); // allow Postman / mobile apps
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      } else {
-        console.warn(`❌ CORS Blocked Origin: ${origin}`);
-        return callback(new Error('Not allowed by CORS'));
-      }
-    },
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-  })
-);
-
-/* --------------------------------------------
-   ✅ Middleware
--------------------------------------------- */
-app.use(express.json({ limit: '50mb' }));
+app.use(express.json({ limit: '50mb' })); // Increase JSON size limit if necessary
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+
+// Static folder for uploads
 app.use('/uploads', express.static('uploads'));
 
 /* --------------------------------------------
@@ -76,12 +44,10 @@ app.use('/api/process', processFlowRoutes);
 
 /* --------------------------------------------
    ✅ IP Info Route (Fixed for CORS)
-   - Acts as a backend proxy for frontend calls
-   - Frontend can now safely use `/api/ipinfo`
 -------------------------------------------- */
-// ✅ Free IP API fix using ipwho.is
 app.get('/api/ipinfo', async (req, res) => {
   try {
+    // Use ipwho.is API to fetch IP info
     const response = await axios.get('https://ipwho.is/');
     res.json(response.data);
   } catch (error) {
@@ -90,11 +56,10 @@ app.get('/api/ipinfo', async (req, res) => {
   }
 });
 
-
 /* --------------------------------------------
    ✅ Serve React Frontend (build folder)
 -------------------------------------------- */
-const frontendPath = path.join(__dirname, '..', 'build');
+const frontendPath = path.join(__dirname, '..', 'build'); // React build folder
 app.use(express.static(frontendPath));
 
 /* --------------------------------------------
