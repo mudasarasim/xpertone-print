@@ -32,11 +32,11 @@ const handleLogout = () => {
                             <div className="col text-left header-top-left d-none d-lg-block">
                                 <div className="header-top-social">
                                 <li className="list-inline-item">
-  <a href="tel:+971526353298"><i className="msicon msi-phone"></i> +971 52 635 3298</a>
+  <a href="tel:+971545832318"><i className="msicon msi-phone"></i> +971 54 583 2318</a>
 </li>
 <li className="list-inline-item">
-  <a href="https://wa.me/971526353298" target="_blank" rel="noopener noreferrer">
-    <i className="msicon msi-whatsapp"></i> +971 52 635 3298
+  <a href="https://wa.me/971545832318" target="_blank" rel="noopener noreferrer">
+    <i className="msicon msi-whatsapp"></i> +971 54 583 2318
   </a>
 </li> 
                                 </div>

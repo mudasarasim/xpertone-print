@@ -62,7 +62,7 @@ United Arab Emirates</p>
                                             </li>
                                             <li class="ms-footer-link ms-foo-call"><span><img
                                                         src="assets/img/icons/foo-wp.svg" class="svg_img foo_svg"
-                                                        alt=""/></span><a href="tel:+009876543210">+971 52 635 3298</a>
+                                                        alt=""/></span><a href="tel:+971545832318">+971 54 583 2318</a>
                                             </li>
                                             <li class="ms-footer-link ms-foo-mail"><span><img
                                                         src="assets/img/icons/foo-mail.svg" class="svg_img foo_svg"
