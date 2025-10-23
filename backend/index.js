@@ -8,11 +8,14 @@ const app = express();
 /* --------------------------------------------
    ✅ Middleware for Body Parsing
 -------------------------------------------- */
-app.use(express.json({ limit: '50mb' })); // Allows large JSON payloads
+app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
-// Static folder for uploads
-app.use('/uploads', express.static('uploads'));
+/* --------------------------------------------
+   ✅ Serve Uploads Folder (Fix for 404 issue)
+-------------------------------------------- */
+// Use absolute path to be safe
+app.use('/backend/uploads', express.static(path.join(__dirname, 'uploads')));
 
 /* --------------------------------------------
    ✅ Route Imports
@@ -43,7 +46,7 @@ app.use('/api/profile', profileRoutes);
 app.use('/api/process', processFlowRoutes);
 
 /* --------------------------------------------
-   ✅ IP Info Route (CORS-Safe & API-Fallback)
+   ✅ IP Info Route
 -------------------------------------------- */
 app.get('/api/ipinfo', async (req, res) => {
   try {
@@ -56,14 +59,13 @@ app.get('/api/ipinfo', async (req, res) => {
 });
 
 /* --------------------------------------------
-   ✅ Serve React Frontend (build folder)
+   ✅ Serve React Frontend
 -------------------------------------------- */
-const frontendPath = path.join(__dirname, '..', 'build'); // React build path
+const frontendPath = path.join(__dirname, '..', 'build');
 app.use(express.static(frontendPath));
 
 /* --------------------------------------------
-   ✅ Handle React Router (SPA Fallback)
-   Fixes path-to-regexp '*' crash in latest Express
+   ✅ React Router Fallback
 -------------------------------------------- */
 app.get(/.*/, (req, res) => {
   res.sendFile(path.join(frontendPath, 'index.html'));
