@@ -170,7 +170,7 @@ const AddProduct = () => {
           <div className="col-md-3 mb-4" key={product.id}>
             <div className="card product-card h-100">
               <img
-                src={`${BASE_URL}/uploads/${product.image}`}
+                src={`${BASE_URL}/backend/uploads/${product.image}`}
                 className="card-img-top"
                 alt={product.title}
                 style={{ height: '200px', objectFit: 'cover' }}

@@ -76,7 +76,7 @@
 //                   src={
 //                     item.image?.startsWith('http')
 //                       ? item.image
-//                       : `http://localhost:5001/uploads/${item.image}`
+//                       : `http://localhost:5001/backend/uploads/${item.image}`
 //                   }
 //                   alt={item.title}
 //                   style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '6px' }}

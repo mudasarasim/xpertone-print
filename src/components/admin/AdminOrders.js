@@ -66,7 +66,7 @@ const AdminOrders = () => {
                   <td>
                     {order.front_file ? (
                       <a
-                        href={`${BASE_URL}/uploads/${order.front_file}`}
+                        href={`${BASE_URL}/backend/uploads/${order.front_file}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn-sm btn-outline-primary"
@@ -80,7 +80,7 @@ const AdminOrders = () => {
                   <td>
                     {order.back_file ? (
                       <a
-                        href={`${BASE_URL}/uploads/${order.back_file}`}
+                        href={`${BASE_URL}/backend/uploads/${order.back_file}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn-sm btn-outline-primary"

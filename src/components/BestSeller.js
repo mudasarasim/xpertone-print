@@ -62,7 +62,7 @@ const BestSellerProducts = () => {
               {/* 🖼 Image */}
               <div className="product-image-wrapper">
                 <img
-                  src={`${BASE_URL}/uploads/${product.image}`}
+                  src={`${BASE_URL}/backend/uploads/${product.image}`}
                   alt={product.title}
                   className="product-image"
                 />

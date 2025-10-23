@@ -64,7 +64,7 @@ const AdminSafetyOrders = () => {
                     {o.design_image ? (
                       <>
                         <img
-                          src={`${BASE_URL}/uploads/${o.design_image}`}
+                          src={`${BASE_URL}/backend/uploads/${o.design_image}`}
                           alt="Design"
                           width="80"
                           height="80"
@@ -72,7 +72,7 @@ const AdminSafetyOrders = () => {
                         />
                         <br />
                         <a
-                          href={`${BASE_URL}/uploads/${o.design_image}`}
+                          href={`${BASE_URL}/backend/uploads/${o.design_image}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="btn btn-sm btn-outline-primary mt-2"

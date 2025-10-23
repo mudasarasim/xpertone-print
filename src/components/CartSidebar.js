@@ -49,7 +49,7 @@ const CartSidebar = () => {
                           src={
                             item.image?.startsWith('http')
                               ? item.image
-                              : `${BASE_URL}/uploads/${item.image}`
+                              : `${BASE_URL}/backend/uploads/${item.image}`
                           }
                           alt={item.title || 'Product'}
                         />

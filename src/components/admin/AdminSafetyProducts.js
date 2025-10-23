@@ -207,7 +207,7 @@ const AdminSafetyProducts = () => {
         {filteredProducts.map((p) => (
           <div className="col-md-3 mb-4" key={p.id}>
             <div className="card h-100">
-              <img src={`${BASE_URL}/uploads/${p.image}`} className="card-img-top" alt={p.title} style={{ height: '200px', objectFit: 'cover' }} />
+              <img src={`${BASE_URL}/backend/uploads/${p.image}`} className="card-img-top" alt={p.title} style={{ height: '200px', objectFit: 'cover' }} />
               <div className="card-body">
                 <h5 className="card-title">{p.title}</h5>
                 <p className="card-text">

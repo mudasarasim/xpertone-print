@@ -147,7 +147,7 @@ const OrderPage = () => {
               <div className="row g-0 align-items-center">
                 <div className="col-4">
                   <img
-                    src={`${BASE_URL}/uploads/${item.image}`}
+                    src={`${BASE_URL}/backend/uploads/${item.image}`}
                     className="img-fluid rounded-start"
                     alt={item.title}
                     style={{ height: '100%', objectFit: 'cover' }}

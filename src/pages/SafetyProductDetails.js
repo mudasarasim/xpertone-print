@@ -85,7 +85,7 @@ const SafetyProductDetails = () => {
             }}
           >
             <img
-              src={`${BASE_URL}/uploads/${product.image}`}
+              src={`${BASE_URL}/backend/uploads/${product.image}`}
               alt={product.title}
               style={{
                 width: '100%',

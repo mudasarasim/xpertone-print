@@ -49,7 +49,7 @@ const ProductDetail = () => {
             <div className="col-md-5">
               <div className="product-img">
                 <img
-                  src={`${BASE_URL}/uploads/${product.image}`}
+                  src={`${BASE_URL}/backend/uploads/${product.image}`}
                   alt={product.title}
                   className="img-fluid rounded"
                 />
