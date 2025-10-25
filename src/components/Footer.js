@@ -70,7 +70,7 @@ United Arab Emirates</p>
                                         </ul>
                                     </div>
                                 </div>
-                            </div>
+                            </div>  
                             <div class="ms-footer-social">
                                 <div class="ms-footer-widget">
                                     <div class="ms-footer-links ms-footer-dropdown">

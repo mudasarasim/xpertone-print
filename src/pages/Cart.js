@@ -34,7 +34,7 @@ const Cart = () => {
                       src={
                         item.image?.startsWith('http')
                           ? item.image
-                          : `${BASE_URL}/uploads/${item.image}`
+                          : `${BASE_URL}/backend/uploads/${item.image}`
                       }
                       className="card-img-top"
                       alt={item.title}

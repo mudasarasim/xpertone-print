@@ -108,20 +108,20 @@ const decreaseQuantity = () => {
                   </div>
 
                   {/* Circulation */}
-                  <div className="col-auto">
+                  {/* <div className="col-auto">
                     <label>Circulation</label>
                     <div className="input-group">
                       <button className="btn btn-outline-secondary" onClick={decreaseCirculation}>-</button>
                       <input type="text" className="form-control text-center" value={circulation} readOnly />
                       <button className="btn btn-outline-secondary" onClick={increaseCirculation}>+</button>
                     </div>
-                  </div>
+                  </div> */}
 
                   {/* Series (read-only) */}
-                  <div className="col-auto">
+                  {/* <div className="col-auto">
                     <label>Series</label>
                     <input type="text" className="form-control text-center" value={series} readOnly />
-                  </div>
+                  </div> */}
 
                   {/* Price Display */}
                   <div className="col-12 mt-3">
