@@ -51,19 +51,21 @@ const ProductDetail = () => {
   const totalPrice = (unitPrice + labelPrice) * series;
 
   const handleAddToCart = () => {
-    const productData = {
-      id: product.id,
-      title: product.title,
-      image: product.image,
-      label: product.label,
-      category: product.category,
-      dimensions: product.dimensions,
-      price: totalPrice,
-    };
-
-    addToCart(productData, series, totalPrice);
-    openCart();
+  const productData = {
+    id: product.id,
+    title: product.title,
+    image: product.image,
+    label: product.label,
+    category: product.category,
+    dimensions: product.dimensions,
+    price: totalPrice,
   };
+
+  addToCart(productData, series, totalPrice);
+  alert('✅ Product added to cart successfully!');
+  openCart();
+};
+
 
   return (
     <>

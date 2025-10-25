@@ -55,27 +55,29 @@ const SafetyProductDetails = () => {
   };
 
   const handleAddToCart = () => {
-    const selectedSizes = Object.entries(sizeQuantities).filter(([_, qty]) => qty > 0);
-    if (selectedSizes.length === 0) {
-      alert('Please select quantity for at least one size.');
-      return;
-    }
+  const selectedSizes = Object.entries(sizeQuantities).filter(([_, qty]) => qty > 0);
+  if (selectedSizes.length === 0) {
+    alert('Please select quantity for at least one size.');
+    return;
+  }
 
-    selectedSizes.forEach(([size, qty]) => {
-      const totalPrice = product.price * qty;
-      const productData = {
-        id: product.id,
-        title: product.title,
-        image: product.image,
-        category: product.category,
-        label: product.label,
-        price: product.price,
-      };
-      addToCart(productData, qty, totalPrice, size);
-    });
+  selectedSizes.forEach(([size, qty]) => {
+    const totalPrice = product.price * qty;
+    const productData = {
+      id: product.id,
+      title: product.title,
+      image: product.image,
+      category: product.category,
+      label: product.label,
+      price: product.price,
+    };
+    addToCart(productData, qty, totalPrice, size);
+  });
 
-    openCart();
-  };
+  alert('✅ Product added to cart successfully!');
+  openCart();
+};
+
 
   const handleStartOrdering = () => {
     const hasQuantity = Object.values(sizeQuantities).some((q) => q > 0);
