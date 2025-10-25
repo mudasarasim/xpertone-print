@@ -11,7 +11,7 @@ const Footer = () => (
                     <div class="row m-minus-991">
                         <div class="col-sm-12 col-lg-3 ms-footer-cat">
                             <div class="ms-footer-widget ms-footer-company">
-                                <img src="assets/img/logo/XLogo.png" style={{height: '120px', width: '400px'}} class="ms-footer-logo" alt="footer logo"/>
+                                <img src="/assets/img/logo/XLogo.png" style={{height: '120px', width: '400px'}} class="ms-footer-logo" alt="footer logo"/>
                                 <p class="ms-footer-detail">Xpertone creative is the biggest market of printing products. Get your daily needs from our services.</p>
                                 
                             </div>
@@ -52,7 +52,7 @@ const Footer = () => (
                                     <div class="ms-footer-links ms-footer-dropdown">
                                         <ul class="align-items-center">
                                             <li class="ms-footer-link ms-foo-location"><span><img
-                                                        src="assets/img/icons/foo-location.svg" class="svg_img foo_svg"
+                                                        src="/assets/img/icons/foo-location.svg" class="svg_img foo_svg"
                                                         alt=""/></span>
                                                 <p>Um Suqeim Street - Al Barsha
 
@@ -61,11 +61,11 @@ Al Barsha 1 - Dubai
 United Arab Emirates</p>
                                             </li>
                                             <li class="ms-footer-link ms-foo-call"><span><img
-                                                        src="assets/img/icons/foo-wp.svg" class="svg_img foo_svg"
+                                                        src="/assets/img/icons/foo-wp.svg" class="svg_img foo_svg"
                                                         alt=""/></span><a href="tel:+971545832318">+971 54 583 2318</a>
                                             </li>
                                             <li class="ms-footer-link ms-foo-mail"><span><img
-                                                        src="assets/img/icons/foo-mail.svg" class="svg_img foo_svg"
+                                                        src="/assets/img/icons/foo-mail.svg" class="svg_img foo_svg"
                                                         alt=""/></span><a href="mailto:example@email.com">info@xpertonecreative.com</a></li>
                                         </ul>
                                     </div>
@@ -99,7 +99,7 @@ United Arab Emirates</p>
                             <div class="footer-bottom-right">
                                 <div class="footer-bottom-payment d-flex justify-content-center">
                                     <div class="payment-link">
-                                        <img src="assets/img/hero-bg/payment.png" alt="payment"/>
+                                        <img src="/assets/img/hero-bg/payment.png" alt="payment"/>
                                     </div>
 
                                 </div>

@@ -73,17 +73,17 @@ const handleLogout = () => {
                                     <div className="col ms-category-icon-block">
                                         <div className="ms-category-menu">
                                             <div className="ms-category-toggle">
-                                                <img src="assets/img/icons/category-icon.svg" className="svg_img header_svg svg_cat" alt="icon" />
+                                                <img src="/assets/img/icons/category-icon.svg" className="svg_img header_svg svg_cat" alt="icon" />
                                             </div>
                                         </div>
                                     </div>
                                     <div className="right-icons">
                                         <a href="login.html" className="ms-header-btn ms-header-user">
-                                            <div className="header-icon"><img src="assets/img/icons/user.svg" className="svg_img header_svg" alt="" /></div>
+                                            <div className="header-icon"><img src="/assets/img/icons/user.svg" className="svg_img header_svg" alt="" /></div>
                                         </a>
                                         <Link to="/cart" className="ms-header-btn ms-cart-toggle" title="Cart">
   <div className="header-icon">
-    <img src="assets/img/icons/cart_5.svg" className="svg_img header_svg" alt="" />
+    <img src="/assets/img/icons/cart_5.svg" className="svg_img header_svg" alt="" />
     <span className="main-label-note-new"></span>
   </div>
   <div className="ms-btn-desc">
@@ -108,7 +108,7 @@ const handleLogout = () => {
                             <div className="ms-flex">
                                 <div className="align-self-center ms-header-logo">
                                     <div className="header-logo">
-                                        <Link to={'/'}><img src="assets/logo.png" alt="Site Logo" /></Link>
+                                        <Link to={'/'}><img src="/assets/logo.png" alt="Site Logo" /></Link>
                                     </div>
                                 </div>
                                 <div className="align-self-center ms-header-search">
@@ -124,7 +124,7 @@ const handleLogout = () => {
                                                 </select>
                                             </div>
                                             <input className="form-control ms-search-bar" placeholder="Search Products..." type="text" />
-                                            <button className="search_submit" type="submit"><img src="assets/img/icons/search.svg"
+                                            <button className="search_submit" type="submit"><img src="/assets/img/icons/search.svg"
                                                 className="svg_img search_svg" alt="" /></button>
                                         </form>
                                     </div>
@@ -135,7 +135,7 @@ const handleLogout = () => {
  <div className="ms-acc-drop">
   <div className="ms-header-btn ms-header-user dropdown-toggle ms-user-toggle" title="Account">
     <div className="header-icon">
-      <img src="assets/img/icons/user.svg" className="svg_img header_svg" alt="" />
+      <img src="/assets/img/icons/user.svg" className="svg_img header_svg" alt="" />
     </div>
     <div className="ms-btn-desc">
       <span className="ms-btn-title">Account</span>
@@ -159,7 +159,7 @@ const handleLogout = () => {
 
 <Link to="/cart" className="ms-header-btn ms-cart-toggle" title="Cart">
   <div className="header-icon">
-    <img src="assets/img/icons/cart_5.svg" className="svg_img header_svg" alt="" />
+    <img src="/assets/img/icons/cart_5.svg" className="svg_img header_svg" alt="" />
     <span className="main-label-note-new"></span>
   </div>
   <div className="ms-btn-desc">
@@ -182,7 +182,7 @@ const handleLogout = () => {
                             <div className="col ms-category-icon-block">
                                 <div className="ms-category-menu">
                                     <div className="ms-category-toggle">
-                                        <img src="assets/img/icons/category-icon.svg" className="svg_img header_svg svg_cat" alt="icon" />
+                                        <img src="/assets/img/icons/category-icon.svg" className="svg_img header_svg svg_cat" alt="icon" />
                                     </div>
                                 </div>
                             </div>
@@ -238,7 +238,7 @@ const handleLogout = () => {
                             <div className="col ms-location-block">
                                 <div className="ms-location-menu">
                                     <div className="ms-location-toggle">
-                                        <img src="assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" />
+                                        <img src="/assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" />
                                         <span className="ms-location-title d-1199 ms-location" id="ms_location"></span>
                                         <i className="msicon msi-angle-down d-1199" aria-hidden="true"></i>
                                     </div>
@@ -247,13 +247,13 @@ const handleLogout = () => {
                                             <div className="row ms-location-wrapper">
                                                 <ul className="loc-grid">
                                                     <li className="loc-list current">
-                                                        <img src="assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" /><span className="ms-detail-current">current Location</span>
+                                                        <img src="/assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" /><span className="ms-detail-current">current Location</span>
                                                     </li>
-                                                    <li className="loc-list"><img src="assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" /><span className="ms-detail">rajkot, in</span></li>
-                                                    <li className="loc-list"><img src="assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" /><span className="ms-detail">Mountain View, us</span></li>
-                                                    <li className="loc-list"><img src="assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" /><span className="ms-detail">Birmingham, UK</span></li>
-                                                    <li className="loc-list"><img src="assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" /><span className="ms-detail">Jakarta, id</span></li>
-                                                    <li className="loc-list"><img src="assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" /><span className="ms-detail">lima, pe</span></li>
+                                                    <li className="loc-list"><img src="/assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" /><span className="ms-detail">rajkot, in</span></li>
+                                                    <li className="loc-list"><img src="/assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" /><span className="ms-detail">Mountain View, us</span></li>
+                                                    <li className="loc-list"><img src="/assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" /><span className="ms-detail">Birmingham, UK</span></li>
+                                                    <li className="loc-list"><img src="/assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" /><span className="ms-detail">Jakarta, id</span></li>
+                                                    <li className="loc-list"><img src="/assets/img/icons/location.svg" className="svg_img header_svg svg_loc" alt="icon" /><span className="ms-detail">lima, pe</span></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -275,7 +275,7 @@ const handleLogout = () => {
                             <div className="ms-mobile-search">
                                 <form>
                                     <input type="text" name="search" placeholder="Search.." />
-                                    <button className="search_submit" type="submit"><img src="assets/img/icons/search.svg"
+                                    <button className="search_submit" type="submit"><img src="/assets/img/icons/search.svg"
                                         className="svg_img search_svg" alt="" /></button>
                                 </form>
                             </div>
@@ -333,12 +333,12 @@ const handleLogout = () => {
                                 <div className="col ms-header-logo">
                                     <div className="header-logo">
                                         <Link to={'/'}>
-                                            <img src="assets/logo.png" alt="Site Logo" />
+                                            <img src="/assets/logo.png" alt="Site Logo" />
                                         </Link>
                                     </div>
                                 </div>
                                 <a href="javascript:void(0)" className="ms-header-btn ms-site-menu-icon d-lg-none">
-                                    <img src="assets/img/icons/menu.svg" className="svg_img" alt="menu" />
+                                    <img src="/assets/img/icons/menu.svg" className="svg_img" alt="menu" />
                                 </a>
 
                             </div>
