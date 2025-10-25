@@ -92,23 +92,22 @@ const Home = () => {
   </div>
 </section>
 
-
-           <section className="ms-product-tab padding-tb-30 mt-4">
+  <section className="ms-product-tab padding-tb-30">
   <div className="container">
     <div className="row">
       <div className="col-md-12">
         <div className="section-title">
-          <h2>
-            Pant &  <span>Shirts/Coveralls</span> Products
-          </h2>
+          
+          <h2>Safety <span> Vest</span> Products</h2>
         </div>
       </div>
     </div>
 
-    <BestSellerProducts />
+    {/* Use dynamic products here */}
+    <NewArrivalProducts />
   </div>
 </section>
-
+        
 
             <section class="ms-banner padding-tb-30">
                 <div class="container">
@@ -129,22 +128,21 @@ const Home = () => {
                 </div>
             </section>
 
-       <section className="ms-product-tab padding-tb-30">
+ <section className="ms-product-tab padding-tb-30 mt-4">
   <div className="container">
     <div className="row">
       <div className="col-md-12">
         <div className="section-title">
-          
-          <h2>Safety <span> Vest</span> Products</h2>
+          <h2>
+            Pant &  <span>Shirts/Coveralls</span> Products
+          </h2>
         </div>
       </div>
     </div>
 
-    {/* Use dynamic products here */}
-    <NewArrivalProducts />
+    <BestSellerProducts />
   </div>
 </section>
-
 
             {/* <section class="ms-offer-section padding-tb-30">
                 <div class="container" data-animation="fadeIn">
