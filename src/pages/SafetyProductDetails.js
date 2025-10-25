@@ -1,8 +1,10 @@
+// src/pages/SafetyProductDetails.js
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './SafetyProductDetails.css';
-import {BASE_URL} from '../config';
+import { useCart } from '../context/CartContext';
+import { BASE_URL } from '../config';
 
 const safetyCategories = ['Safety Vest', 'Pant-Shirts-Coveralls', 'Safety Cargo Trousers'];
 
@@ -12,6 +14,7 @@ const SafetyProductDetails = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [sizeQuantities, setSizeQuantities] = useState({});
+  const { addToCart, openCart } = useCart();
 
   const parseSizes = (size) => {
     if (!size) return [];
@@ -51,13 +54,35 @@ const SafetyProductDetails = () => {
     }
   };
 
-  const handleStartOrdering = () => {
-    const hasQuantity = Object.values(sizeQuantities).some(q => q > 0);
-    if (!hasQuantity) {
+  const handleAddToCart = () => {
+    const selectedSizes = Object.entries(sizeQuantities).filter(([_, qty]) => qty > 0);
+    if (selectedSizes.length === 0) {
       alert('Please select quantity for at least one size.');
       return;
     }
 
+    selectedSizes.forEach(([size, qty]) => {
+      const totalPrice = product.price * qty;
+      const productData = {
+        id: product.id,
+        title: product.title,
+        image: product.image,
+        category: product.category,
+        label: product.label,
+        price: product.price,
+      };
+      addToCart(productData, qty, totalPrice, size);
+    });
+
+    openCart();
+  };
+
+  const handleStartOrdering = () => {
+    const hasQuantity = Object.values(sizeQuantities).some((q) => q > 0);
+    if (!hasQuantity) {
+      alert('Please select quantity for at least one size.');
+      return;
+    }
     navigate('/order', { state: { items: [{ ...product, sizeQuantities }] } });
   };
 
@@ -75,23 +100,19 @@ const SafetyProductDetails = () => {
             className="product-image-wrapper shadow-sm rounded"
             style={{
               width: '100%',
-              maxWidth: '400px',   // max width for large images
-              height: '400px',      // fixed height
+              maxWidth: '400px',
+              height: '400px',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
               overflow: 'hidden',
-              backgroundColor: '#f8f9fa'
+              backgroundColor: '#f8f9fa',
             }}
           >
             <img
               src={`${BASE_URL}/backend/uploads/${product.image}`}
               alt={product.title}
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'contain', // ensures the whole image fits without cropping
-              }}
+              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
             />
           </div>
         </div>
@@ -99,7 +120,9 @@ const SafetyProductDetails = () => {
         {/* Product Details */}
         <div className="col-md-6">
           <div className="details-card p-4 shadow-sm rounded bg-white">
-            <h2 className="mb-3 product-title" style={{background: 'transparent'}}>{product.title}</h2>
+            <h2 className="mb-3 product-title" style={{ background: 'transparent' }}>
+              {product.title}
+            </h2>
             <p><strong>Label:</strong> {product.label}</p>
             <p><strong>Category:</strong> {product.category}</p>
             <p><strong>Price:</strong> AED {product.price}</p>
@@ -127,7 +150,14 @@ const SafetyProductDetails = () => {
             )}
 
             <button
-              className="btn btn-primary mt-4 w-100 btn-hover"
+              className="btn btn-outline-primary mt-3 w-100 btn-hover"
+              onClick={handleAddToCart}
+            >
+              <i className="fa fa-shopping-cart me-2"></i> Add to Cart
+            </button>
+
+            <button
+              className="btn btn-primary mt-3 w-100 btn-hover"
               onClick={handleStartOrdering}
             >
               Start Ordering

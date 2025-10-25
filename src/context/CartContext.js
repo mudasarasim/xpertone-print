@@ -1,4 +1,4 @@
-// context/CartContext.js
+// src/context/CartContext.js
 import React, { createContext, useContext, useState } from 'react';
 
 const CartContext = createContext();
@@ -9,26 +9,48 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  const addToCart = (product) => {
+  // ✅ Add product to cart (supports size for safety products)
+  const addToCart = (product, quantity = 1, totalPrice = 0, size = null) => {
     setCartItems((prevItems) => {
-      const existing = prevItems.find((item) => item.id === product.id);
-      if (existing) {
-        return prevItems.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
+      const existingIndex = prevItems.findIndex(
+        (item) => item.id === product.id && item.size === size
+      );
+
+      if (existingIndex !== -1) {
+        const updated = [...prevItems];
+        updated[existingIndex].quantity += quantity;
+        updated[existingIndex].totalPrice += totalPrice;
+        return updated;
       }
-      return [...prevItems, { ...product, quantity: 1 }];
+
+      return [
+        ...prevItems,
+        {
+          ...product,
+          quantity,
+          totalPrice,
+          size, // optional (for safety products)
+        },
+      ];
     });
-    setIsCartOpen(true); // ⬅️ Open cart when item is added
+
+    setIsCartOpen(true);
   };
 
-  const removeFromCart = (productId) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== productId));
+  const removeFromCart = (id, size = null) => {
+    setCartItems((prev) =>
+      prev.filter((item) => !(item.id === id && item.size === size))
+    );
   };
 
-  const updateQuantity = (id, quantity) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) => (item.id === id ? { ...item, quantity } : item))
+  const updateQuantity = (id, newQty, size = null) => {
+    if (newQty < 1) return;
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id && item.size === size
+          ? { ...item, quantity: newQty }
+          : item
+      )
     );
   };
 

@@ -1,52 +1,69 @@
+// src/pages/ProductDetail.js
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import CategorySidebar from '../components/CategorySidebar';
 import CartSidebar from '../components/CartSidebar';
-import { useNavigate } from 'react-router-dom';
-import {BASE_URL} from '../config';
+import { useCart } from '../context/CartContext';
+import { BASE_URL } from '../config';
 
 const ProductDetail = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
-  const [quantity, setQuantity] = useState(500); // start with 500
+  const [quantity, setQuantity] = useState(500);
   const [circulation, setCirculation] = useState(1000);
   const [series, setSeries] = useState(1);
   const [unitPrice, setUnitPrice] = useState(0);
   const navigate = useNavigate();
+  const { addToCart, openCart } = useCart();
 
   useEffect(() => {
-    axios.get(`${BASE_URL}/api/products/${id}`)
-      .then(res => {
+    axios
+      .get(`${BASE_URL}/api/products/${id}`)
+      .then((res) => {
         setProduct(res.data);
-        const price = quantity === 1000 ? parseFloat(res.data.quantity_1000) : parseFloat(res.data.quantity_500);
+        const price =
+          quantity === 1000
+            ? parseFloat(res.data.quantity_1000)
+            : parseFloat(res.data.quantity_500);
         setUnitPrice(price);
       })
-      .catch(err => console.error('Product detail fetch error:', err));
+      .catch((err) => console.error('Product detail fetch error:', err));
   }, [id]);
 
   const increaseQuantity = () => {
-  const newQuantity = quantity + 500;
-  setQuantity(newQuantity);
-  setSeries(newQuantity / 500);
-};
+    const newQty = quantity + 500;
+    setQuantity(newQty);
+    setSeries(newQty / 500);
+  };
 
-const decreaseQuantity = () => {
-  if (quantity > 500) {
-    const newQuantity = quantity - 500;
-    setQuantity(newQuantity);
-    setSeries(newQuantity / 500);
-  }
-};
-
-
-  const increaseCirculation = () => setCirculation(prev => prev + 100);
-  const decreaseCirculation = () => setCirculation(prev => (prev > 100 ? prev - 100 : 100));
+  const decreaseQuantity = () => {
+    if (quantity > 500) {
+      const newQty = quantity - 500;
+      setQuantity(newQty);
+      setSeries(newQty / 500);
+    }
+  };
 
   if (!product) return <div>Loading...</div>;
 
   const labelPrice = parseFloat(product.label) || 0;
   const totalPrice = (unitPrice + labelPrice) * series;
+
+  const handleAddToCart = () => {
+    const productData = {
+      id: product.id,
+      title: product.title,
+      image: product.image,
+      label: product.label,
+      category: product.category,
+      dimensions: product.dimensions,
+      price: totalPrice,
+    };
+
+    addToCart(productData, series, totalPrice);
+    openCart();
+  };
 
   return (
     <>
@@ -96,97 +113,65 @@ const decreaseQuantity = () => {
                 <p className="mb-3">Label: AED {product.label}</p>
                 <p className="mb-3">Category: {product.category}</p>
 
+                {/* Quantity Controls */}
                 <div className="row align-items-center my-4">
-                  {/* Quantity Toggle */}
                   <div className="col-auto">
                     <label>Quantity</label>
                     <div className="input-group">
-                      <button className="btn btn-outline-secondary" onClick={decreaseQuantity}>-</button>
-                      <input type="text" className="form-control text-center" value={quantity} readOnly />
-                      <button className="btn btn-outline-secondary" onClick={increaseQuantity}>+</button>
+                      <button
+                        className="btn btn-outline-secondary"
+                        onClick={decreaseQuantity}
+                      >
+                        -
+                      </button>
+                      <input
+                        type="text"
+                        className="form-control text-center"
+                        value={quantity}
+                        readOnly
+                      />
+                      <button
+                        className="btn btn-outline-secondary"
+                        onClick={increaseQuantity}
+                      >
+                        +
+                      </button>
                     </div>
                   </div>
 
-                  {/* Circulation */}
-                  {/* <div className="col-auto">
-                    <label>Circulation</label>
-                    <div className="input-group">
-                      <button className="btn btn-outline-secondary" onClick={decreaseCirculation}>-</button>
-                      <input type="text" className="form-control text-center" value={circulation} readOnly />
-                      <button className="btn btn-outline-secondary" onClick={increaseCirculation}>+</button>
-                    </div>
-                  </div> */}
-
-                  {/* Series (read-only) */}
-                  {/* <div className="col-auto">
-                    <label>Series</label>
-                    <input type="text" className="form-control text-center" value={series} readOnly />
-                  </div> */}
-
-                  {/* Price Display */}
                   <div className="col-12 mt-3">
                     <h5 className="text-dark">
-                      Price: <span style={{ color: 'red' }}>
+                      Price:{' '}
+                      <span style={{ color: 'red' }}>
                         AED {totalPrice.toFixed(2)}
                       </span>
                     </h5>
                   </div>
                 </div>
 
-                {/* Badges */}
-                <div className="d-flex gap-3 mb-3">
-                  <span className="badge bg-secondary">Turnaround: Normal</span>
-                  <span className="badge bg-secondary">Printed Side: Front and Back</span>
-                </div>
+                {/* Buttons */}
+                <div className="d-flex gap-3 mt-4">
+                  <button className="btn btn-primary" onClick={handleAddToCart}>
+                    <i className="fa fa-shopping-cart me-2"></i> Add to Cart
+                  </button>
 
-                {/* Process Duration Table */}
-                <div className="mb-4">
-                  <h6 className="fw-bold">Process Duration: <span className="text-primary">2 Business Day(s)</span></h6>
-                  <table className="table table-bordered w-auto">
-                    <thead>
-                      <tr>
-                        <th>Printed Side</th>
-                        <th>Normal</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>Front and Back</td>
-                        <td>2 Business Day(s)</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() =>
+                      navigate('/start-ordering', {
+                        state: {
+                          product,
+                          quantity,
+                          circulation,
+                          series,
+                          totalPrice,
+                        },
+                      })
+                    }
+                  >
+                    <i className="fa fa-bolt me-2"></i> Start Ordering
+                  </button>
                 </div>
-
-                {/* Dimensions */}
-                <div>
-                  <h6 className="fw-bold">Available Dimension(s):</h6>
-                  {product.dimensions ? (
-                    <p>After Cutting: <strong>{product.dimensions}</strong></p>
-                  ) : (
-                    <p className="text-muted">No dimension provided for this product.</p>
-                  )}
-                  <p className="text-muted small">
-                    <i className="fa fa-info-circle text-warning"></i> Up to 4.76% off for online orders. Crossed-out price applies to in-person purchases.
-                  </p>
-                </div>
-
-                <button
-                  className="btn btn-danger mt-3"
-                  onClick={() => {
-                    navigate('/start-ordering', {
-                      state: {
-                        product,
-                        quantity,
-                        circulation,
-                        series,
-                        totalPrice
-                      }
-                    });
-                  }}
-                >
-                  <i className="fa fa-shopping-cart me-2"></i> Start Ordering
-                </button>
               </div>
             </div>
           </div>
